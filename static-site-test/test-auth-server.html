@@ -51,7 +51,7 @@
      const resultLink = document.getElementById("authURL");
      // Replace this with your own endpoint
      const getAuthURL =
-       "https://dddpjgqry7.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url";
+       "https://pp3rdn62qf.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url";
 
 
      getAuthUrlButton.onclick = function () {
@@ -76,7 +76,7 @@
      const getAccessToken = document.getElementById("getToken");
      const accessTokenElement = document.getElementById("accessToken");
      const getToken =
-       "https://dddpjgqry7.execute-api.us-east-1.amazonaws.com/dev/api/token/{code}";
+       "https://pp3rdn62qf.execute-api.us-east-1.amazonaws.com/dev/api/token";
 
 
      getAccessToken.onclick = function () {
@@ -106,10 +106,10 @@
     //-- STEP 3
     const getEvents = document.getElementById("getEvents");
     const events = document.getElementById("events");
-    const getCalendarEvents = "https://dddpjgqry7.execute-api.us-east-1.amazonaws.com/dev/api/get-calendar-events";
+    const getCalendarEvents = "https://pp3rdn62qf.execute-api.us-east-1.amazonaws.com/dev/api/get-calendar-events";
    
     getEvents.onclick = function () {
-      const { access_token } = JSON.parse(accessTokenElement.innerText);
+      const { access_token  } = JSON.parse(accessTokenElement.innerText);
       const eventRequest = getCalendarEvents + "/" + access_token;
       fetch(eventRequest)
         .then(function (response) {
