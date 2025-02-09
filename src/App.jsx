@@ -1,12 +1,17 @@
+// src/App.jsx
 import React from 'react';
-import EventList from './components/EventList'
+import CitySearch from './components/CitySearch';
+import EventList from './components/EventList';
 
-function App() {
-  return (
-    <div className="App">
-      <EventList />
-    </div>
-  )
+
+const App = () => {
+ return (
+   <div>
+     <CitySearch />
+     <EventList />
+   </div>
+ );
 }
+
 
 export default App;
