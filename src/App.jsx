@@ -4,7 +4,7 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents'
 import { getEvents, extractLocations } from './api';
 import './App.css';
-import calendar from '../';
+import calendar from './calendar';
 import { InfoAlert, ErrorAlert } from './components/Alert'
 const App = () => {
   const [events, setEvents] = useState([]);
