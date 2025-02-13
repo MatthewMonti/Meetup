@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import CitySearch from './components/CitySearch';
-import EventList from './components/EventList';
-import NumberOfEvents from './components/NumberOfEvents'
+import CitySearch from './src/components/CitySearch';
+import EventList from './src/components/EventList';
+import NumberOfEvents from './src/components/NumberOfEvents'
 import { getEvents, extractLocations } from './api';
 import './App.css';
-import calendar from './calendar';
-import { InfoAlert, ErrorAlert } from './components/Alert'
+import calendarImage from './public/calendar.png';
+import { InfoAlert, ErrorAlert } from './src/components/Alert'
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);
@@ -35,7 +35,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Meet App</h1>
-      <img className="time" alt="meet-logo"src={calendar}></img>
+      <img className="time" alt="meet-logo"src={calendarImage}></img>
       <div className="cityError-Message">
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null}
       </div>

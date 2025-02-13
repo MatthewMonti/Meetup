@@ -1,12 +1,12 @@
 // src/__tests__/CitySearch.test.js
 
 import React from 'react';
-import { render, within, waitFor, screen, fireEvent} from '@testing-library/react';
+import { render, within, waitFor, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
-import { extractLocations, getEvents } from '../api';
-import App from '../App';
-import '../calendar.png'
+import { extractLocations, getEvents } from '../../api.js';
+import App from '../../App.jsx';
+import '../../assets/calendar.png'
 describe('<CitySearch /> component', ()  => {
   let allLocations;
   let citySearchComponent;

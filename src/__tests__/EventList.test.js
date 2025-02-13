@@ -2,8 +2,9 @@
 import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
 import EventList from '../components/EventList';
-import { getEvents } from '../api';
-import App from '../App'
+import { getEvents } from '../../api';
+
+import App from '../../App'
 describe('<EventList /> component', () => {
    let eventListComponent;
  beforeEach(() => {

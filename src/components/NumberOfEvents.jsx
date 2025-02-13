@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import '../App.css'
+import '../../App.css'
 const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
     const [number, setNumber] = useState(currentNOE);
 
