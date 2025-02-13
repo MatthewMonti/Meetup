@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Meet App</h1>
+      <h1>Meetup App</h1>
       <img className="time" alt="meet-logo"src={calendarImage}></img>
       <div className="cityError-Message">
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null}
