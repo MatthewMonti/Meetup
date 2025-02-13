@@ -5,7 +5,7 @@ import { render, within, waitFor, screen, fireEvent} from '@testing-library/reac
 import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
 import { extractLocations, getEvents } from '../api';
-import App from 'src/App.jsx';
+import App from '../App';
 
 describe('<CitySearch /> component', ()  => {
   let allLocations;
