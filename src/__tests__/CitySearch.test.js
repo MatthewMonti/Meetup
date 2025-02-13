@@ -6,7 +6,6 @@ import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
 import { extractLocations, getEvents } from '../../api.js';
 import App from '../../App.jsx';
-import '../../assets/calendar.png'
 describe('<CitySearch /> component', ()  => {
   let allLocations;
   let citySearchComponent;
