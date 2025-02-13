@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from './Button';
-// src/components/Event.js
+import Button from './Button'
+import '../App.css'
+
 // src/components/Event.js
 const Event = ({event}) => {
     return (
@@ -13,4 +14,5 @@ const Event = ({event}) => {
     </li>
     );
   }
+  
   export default Event;

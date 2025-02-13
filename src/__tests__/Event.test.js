@@ -26,13 +26,14 @@ describe('<Event /> component', () => {
     expect(eventLocation).toBeInTheDocument();
   });
 
-  test('event start time is displayed', () => {
-    const eventStartTime = screen.queryByText(`${event.start.dateTime} ${event.start.timeZone}`);
-    expect(eventStartTime).toBeInTheDocument();
-  });
+test('event start time is displayed', () => {
+  const eventStartTime = screen.queryByText(`${event.start.dateTime} ${event.start.timeZone}`);
+  expect(eventStartTime).toBeInTheDocument();
+});
+
+test('event end time is displayed', () => {
+  const eventEndTime = screen.queryByText(`${event.end.dateTime} ${event.end.timeZone}`);
+  expect(eventEndTime).toBeInTheDocument();
+});
   
-  test('event end time is displayed', () => {
-    const eventEndTime =  screen.queryByText(`${event.end.dateTime} ${event.end.timeZone}`);
-    expect(eventEndTime).toBeInTheDocument();
-  });
 });

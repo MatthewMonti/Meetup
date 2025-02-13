@@ -1,8 +1,7 @@
-import React from 'react';
-import NumberOfEvents from '../components/NumberOfEvents.jsx';
+import NumberOfEvents from '../components/NumberOfEvents';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
+import React from 'react';
 describe('<NumberOfEvents /> Component', () => {
     let numberOfEventsComponent;
     beforeEach(() => {

@@ -1,42 +1,322 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+html {
   text-align: center;
+  background-color: white;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+img{
+  height: 150px;
+  width: 150px;
 }
 
-@keyframes logo-spin {
+
+h3, li.event{
+  color: black;
+  opacity: 1;
+  width:max-content;
+  text-align:left;
+}
+* {
+  box-sizing: border-box;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+
+h4{
+  text-align:center;
+}
+
+
+
+
+#citySearch{
+  position: relative;
+  width: 250px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+}
+
+/* Style the search bar */
+.city {
+  width: 100%; /* Full width of the container */
+  padding: 10px; /* Add some padding for usability */
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding/borders in width */
+}
+
+.suggestions {
+  list-style: none; /* Remove bullets */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  position: absolute; /* Position relative to the search bar */
+  top: 100%; /* Place directly below the search bar */
+  left: 0; /* Align left edge with search bar */
+  width: 100%; /* Match width of search bar */
+  background-color: #f9f9f9;
+  border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+
+  z-index: 1000; /* Ensure dropdown appears above other elements */
+}
+
+/* Style each dropdown item */
+.suggestions li {
+  padding: 7px; /* Add spacing inside each item */
+  cursor: pointer; /* Make it look clickable */
+  transition: background-color 0.2s ease;
+}
+.suggestions li:hover {
+  background-color: #A7D7D4; /* Highlight on hover */
+}
+
+#numberSearch{
+  position: relative;
+  width: 200px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.eventNumber{
+  width: 100%; /* Full width of the container */
+  padding: 10px; /* Add some padding for usability */
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding/borders in width */
+}
+
+li.event {
+  border: 2px solid rgb(223, 223, 223); /* Dark grey on the left */
+  padding-top: 10px; /* Adjusted padding */
+  padding-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 675px; /* Ensure this max-width is followed */
+  width: 100%; /* Ensure the width is always 100% of the container, respecting max-width */
+  box-sizing: border-box; /* Include padding and border in the width */
+  list-style: none;
+  overflow: hidden; /* Prevent content from spilling out */
+}
+h3,p{
+  padding-left:10px;
+}
+p.eventAttribute{
+  padding-right: 350px;
+}
+  
+p.eventDetails{
+  padding-right:10px
+}
+
+.eventButton{
+padding-right:10px;
+}
+
+button{
+  float: right;
+  margin-left:100px;
+  display:inline;
+}
+
+
+@media (min-width: 300px) {
+  
+
+  .Alert{
+    position: relative;
+    width: 225px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+  }
+
+  li.event {
+    max-width: 200px; /* Still fixed but make sure it’s appropriate for small screens */
+    width: 100%; /* Ensure it respects the container width */
+    padding-top: 20px; /* Adjust padding */
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    list-style: none;
+    word-wrap: break-word; /* Prevent overflow of text */
+  }
+
+  /* You can reduce padding here if you want more compact design */
+  h3, p {
+    padding-left: 10px;
+  }
+  
+  p.eventAttribute {
+    padding-right: 1px;
+  }
+
+  button {
+    float: right;
+    margin-left: 1px;
+    display: inline;
+  }
+}
+
+
+@media (min-width: 400px) {
+
+
+  .Alert{
+    position: relative;
+    width: 225px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+  }
+
+  ul.list-event{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  li.event{
+    border: 2px solid rgb(223, 223, 223);       /* Dark grey on the left */
+    padding-bottom: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:300px;
+    list-style:none;
+  }
+
+  h3,p{
+    padding-left:10px;
+  }
+  p.eventAttribute{
+    padding-right: 100px;
+  }
+
+  p{
+    padding-right: 10px;
+  }
+
+  button{
+    float: right;
+    margin-left:100px;
+    display:inline
+  }
+}
+
+@media (min-width: 500px) {
+  .Alert{
+    position: relative;
+    width: 225px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+  }
+  ul.list-event{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  li.event{
+    border: 2px solid rgb(223, 223, 223);       /* Dark grey on the left */
+    padding-bottom: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:400px;
+    list-style:none;
+  }
+
+  h3,p{
+    padding-left:10px;
+  }
+  p.eventAttribute{
+    padding-right: 50px;
+  }
+
+  p{
+    padding-right: 10px;
+  }
+
+  button{
+    float: right;
+    margin-left:100px;
+    display:inline
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@media (min-width: 700px) {
+
+  .Alert{
+    position: relative;
+    width: 225px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+  }
+
+  ul.list-event{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  li.event{
+    border: 2px solid rgb(223, 223, 223);       /* Dark grey on the left */
+    padding-bottom: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:599px;
+    list-style:none;
+  }
+
+  h3,p{
+    padding-left:10px;
+  }
+  p.eventAttribute{
+    padding-right: 220px;
+  }
+
+  p{
+    padding-right: 10px;
+  }
+
+  button{
+    float: right;
+    margin-left:100px;
+    display:inline
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
