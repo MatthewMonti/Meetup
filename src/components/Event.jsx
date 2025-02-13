@@ -1,10 +1,16 @@
 import React from 'react';
-
-
-const Event = () => {
+import Button from './Button';
+// src/components/Event.js
+// src/components/Event.js
+const Event = ({event}) => {
     return (
-        <li></li>
+    <li className="event">
+      <h3>{event.summary}</h3>
+      <p className="eventAttribute">{event.start.dateTime} {event.end.timeZone}</p>
+      <p className="eventAttribute">{event.end.dateTime} {event.end.timeZone}</p>
+      <p className="eventAttribute">{event.location}</p>
+      <Button event={event} />
+    </li>
     );
-}
-
-export default Event;
+  }
+  export default Event;
