@@ -13,7 +13,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
     
     const filteredLocations = allLocations ? allLocations.filter((location) => {
       return location.toUpperCase().indexOf(city.toUpperCase()) > -1;
-    }) : [];
+    }) : [`${allLocations}`];
 
     setQuery(city);
     setSuggestions(filteredLocations);
@@ -54,7 +54,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [`${allLocations}`]);
 
   return (
     <div id="citySearch" data-testid="city-search">
