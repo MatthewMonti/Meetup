@@ -134,7 +134,7 @@ describe('<CitySearch /> integration', () => {
   // Fetch data before running any tests
   beforeAll(async () => {
     const allEvents = await getEvents(); // Fetch all events
-    allLocations = extractLocations(allEvents); // Extract locations
+    const allLocations = extractLocations(allEvents); // Extract locations
   });
 
   beforeEach(() => {
@@ -152,15 +152,17 @@ describe('<CitySearch /> integration', () => {
     const CitySearchDOM = within(AppDOM).queryByTestId('city-search');
     const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
     await user.click(cityTextBox);
+    const allEvents = await getEvents();
+    const allLocations = extractLocations(allEvents);
+
     //Absolutely, waitFor is a valuable tool in your testing arsenal. Here’s why it’s beneficial:
     //Asynchronous Nature of React: React updates the DOM asynchronously. waitFor helps ensure that your assertions are only checked after the DOM updates have completed.
     //Flaky Tests: By not using waitFor, your tests can become flaky, meaning they may pass sometimes and fail other times depending on how fast or slow the DOM updates.
    // Network Requests and Side Effects: If your component makes network requests or has other side effects that affect the DOM, waitFor ensures you’re waiting for these to complete before making assertions.
     //Consistency: waitFor keeps your tests consistent. Without it, you may be making assumptions about timing that don’t hold up in different environments or slower CI pipelines.
     await waitFor(() => {
-      const suggestionItems = screen.getAllByRole('listitem');
-      expect(suggestionItems).toHaveLength(1); // Only one suggestion item should be shown
-      expect(suggestionItems[0].textContent).toBe('See all cities'); // It should be "See all cities"
+      const suggestionItems = within(CitySearchDOM).queryAllByRole('listitem');
+      expect(suggestionItems.length).toBe(allLocations.length + 1);
     });
   });
 });
