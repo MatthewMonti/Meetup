@@ -31,7 +31,7 @@ describe('<CitySearch /> component', ()  => {
     // Simulate typing a city that does not exist in the list
     const user = userEvent.setup();
     const cityTextBox = screen.getByTestId('search-input');
-    await user.type(cityTextBox, 'Paris, France');
+    user.type(cityTextBox, 'Paris, France');
   
     // Wait for the suggestions list to update
     const suggestionItems = await screen.findAllByRole('listitem');
@@ -55,7 +55,7 @@ describe('<CitySearch /> component', ()  => {
   test('clicking textbox renders a list of suggestions', async () => {
     const user = userEvent.setup();
     const cityTextBox = citySearchComponent.queryByRole('textbox');
-    await user.click(cityTextBox);
+    user.click(cityTextBox);
     const suggestionList = citySearchComponent.queryByRole('list');
     expect(suggestionList).toBeInTheDocument();
     expect(suggestionList).toHaveClass('suggestions');
@@ -66,7 +66,7 @@ describe('<CitySearch /> component', ()  => {
 
     // User types "Berlin" in city textbox
     const cityTextBox = citySearchComponent.queryByRole('textbox');
-    await user.type(cityTextBox, "Berlin");
+    user.type(cityTextBox, "Berlin");
 
     // Filter allLocations to locations matching "Berlin"
     const suggestions = allLocations ? allLocations.filter((location) =>
@@ -86,11 +86,11 @@ describe('<CitySearch /> component', ()  => {
     const allLocations = extractLocations(allEvents);
 
     const cityTextBox = citySearchComponent.queryByRole('textbox');
-    await user.type(cityTextBox, "Berlin");
+    user.type(cityTextBox, "Berlin");
 
     // The suggestion's textContent looks like this: "Berlin, Germany"
     const BerlinGermanySuggestion = citySearchComponent.queryAllByRole('listitem')[0];
-    await user.click(BerlinGermanySuggestion);
+    user.click(BerlinGermanySuggestion);
 
     expect(cityTextBox).toHaveValue(BerlinGermanySuggestion.textContent);
   });
