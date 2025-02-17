@@ -6,6 +6,8 @@ import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
 import { extractLocations, getEvents } from '../../api.js';
 import App from '../../App.jsx';
+
+
 describe('<CitySearch /> component', ()  => {
   let allLocations;
   let citySearchComponent;
