@@ -100,14 +100,14 @@ describe('<CitySearch /> component', ()  => {
     const cityTextBox = citySearchComponent.queryByRole('textbox');
     
     // Type 'Berlin' into the input field
-    await user.type(cityTextBox, 'Berlin');
+    user.type(cityTextBox, 'Berlin');
     
     // Ensure the suggestions list is visible after typing
     const suggestionList = await screen.findByRole('list');
     expect(suggestionList).toBeInTheDocument();
   
     // Clear the input field
-    await user.clear(cityTextBox);
+    user.clear(cityTextBox);
     
     // Wait for the suggestions list to be removed
     await waitFor(() => {
@@ -142,7 +142,7 @@ describe('<CitySearch /> integration', () => {
     const AppDOM = AppComponent.container.firstChild;
     const CitySearchDOM = within(AppDOM).queryByTestId('city-search');
     const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
-    await user.click(cityTextBox);
+    user.click(cityTextBox);
 
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
