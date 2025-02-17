@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import {getEvents} from '../../api.js';
 import App from '../../App.jsx';
 
-describe('<App /> component', () => {
+describe('<App /> component unit tests', () => {
   beforeEach(async () => {
     await act(async () => {
       render(<App />);  // Don't assign to AppDOM yet
@@ -23,7 +23,7 @@ describe('<App /> component', () => {
 });
 
 
-describe('<App /> component', () => {
+describe('<App /> integration tests', () => {
   beforeEach(async () => {
     await act(async () => {
       render(<App />);  // Don't assign to AppDOM yet
