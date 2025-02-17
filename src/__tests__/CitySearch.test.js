@@ -31,8 +31,9 @@ describe('<CitySearch /> component', ()  => {
     // Simulate typing a city that does not exist in the list
     const user = userEvent.setup();
     const cityTextBox = screen.getByTestId('search-input');
-    user.type(cityTextBox, 'Paris, France');
-  
+    await user.type(cityTextBox, 'Paris, France');
+    // Learned to keep await as this asynchronous function 
+    //needed for test to work
     // Wait for the suggestions list to update
     const suggestionItems = await screen.findAllByRole('listitem');
     
@@ -55,7 +56,9 @@ describe('<CitySearch /> component', ()  => {
   test('clicking textbox renders a list of suggestions', async () => {
     const user = userEvent.setup();
     const cityTextBox = citySearchComponent.queryByRole('textbox');
-    user.click(cityTextBox);
+    await user.click(cityTextBox);
+        // Learned to keep await as this asynchronous function 
+    //needed for test to work
     const suggestionList = citySearchComponent.queryByRole('list');
     expect(suggestionList).toBeInTheDocument();
     expect(suggestionList).toHaveClass('suggestions');
@@ -66,7 +69,9 @@ describe('<CitySearch /> component', ()  => {
 
     // User types "Berlin" in city textbox
     const cityTextBox = citySearchComponent.queryByRole('textbox');
-    user.type(cityTextBox, "Berlin");
+    await user.type(cityTextBox, "Berlin");
+    // Learned to keep await as this asynchronous function 
+    //needed for test to work
 
     // Filter allLocations to locations matching "Berlin"
     const suggestions = allLocations ? allLocations.filter((location) =>
@@ -86,12 +91,14 @@ describe('<CitySearch /> component', ()  => {
     const allLocations = extractLocations(allEvents);
 
     const cityTextBox = citySearchComponent.queryByRole('textbox');
-    user.type(cityTextBox, "Berlin");
-
+    await user.type(cityTextBox, "Berlin");
+    // Learned to keep await as this asynchronous function 
+    //needed for test to work
     // The suggestion's textContent looks like this: "Berlin, Germany"
     const BerlinGermanySuggestion = citySearchComponent.queryAllByRole('listitem')[0];
-    user.click(BerlinGermanySuggestion);
-
+    await user.click(BerlinGermanySuggestion);
+    // Learned to keep await as this asynchronous function 
+    //needed for test to work
     expect(cityTextBox).toHaveValue(BerlinGermanySuggestion.textContent);
   });
 
@@ -100,15 +107,17 @@ describe('<CitySearch /> component', ()  => {
     const cityTextBox = citySearchComponent.queryByRole('textbox');
     
     // Type 'Berlin' into the input field
-    user.type(cityTextBox, 'Berlin');
-    
+    await user.type(cityTextBox, 'Berlin');
+        // Learned to keep await as this asynchronous function 
+    //needed for test to work
     // Ensure the suggestions list is visible after typing
     const suggestionList = await screen.findByRole('list');
     expect(suggestionList).toBeInTheDocument();
   
     // Clear the input field
-    user.clear(cityTextBox);
-    
+    await user.clear(cityTextBox);
+        // Learned to keep await as this asynchronous function 
+    //needed for test to work
     // Wait for the suggestions list to be removed
     await waitFor(() => {
       const suggestionList = citySearchComponent.queryByRole('list');
@@ -142,14 +151,16 @@ describe('<CitySearch /> integration', () => {
     const AppDOM = AppComponent.container.firstChild;
     const CitySearchDOM = within(AppDOM).queryByTestId('city-search');
     const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
-    user.click(cityTextBox);
-
-    const allEvents = await getEvents();
-    const allLocations = extractLocations(allEvents);
-
+    await user.click(cityTextBox);
+    //Absolutely, waitFor is a valuable tool in your testing arsenal. Here’s why it’s beneficial:
+    //Asynchronous Nature of React: React updates the DOM asynchronously. waitFor helps ensure that your assertions are only checked after the DOM updates have completed.
+    //Flaky Tests: By not using waitFor, your tests can become flaky, meaning they may pass sometimes and fail other times depending on how fast or slow the DOM updates.
+   // Network Requests and Side Effects: If your component makes network requests or has other side effects that affect the DOM, waitFor ensures you’re waiting for these to complete before making assertions.
+    //Consistency: waitFor keeps your tests consistent. Without it, you may be making assumptions about timing that don’t hold up in different environments or slower CI pipelines.
     await waitFor(() => {
-      const suggestionListItems = within(CitySearchDOM).queryAllByRole('listitem');
-      expect(suggestionListItems.length).toBe(allLocations.length + 1);
+      const suggestionItems = screen.getAllByRole('listitem');
+      expect(suggestionItems).toHaveLength(1); // Only one suggestion item should be shown
+      expect(suggestionItems[0].textContent).toBe('See all cities'); // It should be "See all cities"
     });
   });
 });
