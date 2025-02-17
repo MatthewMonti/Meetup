@@ -9,7 +9,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const SuggestionListRef = useRef(null);
 
   const handleInputChanged = (event) => {
-    const city = event.target.value.trim();  // Ensure spaces are treated as empty
+    const city = event.target.value
     
     const filteredLocations = allLocations ? allLocations.filter((location) => {
       return location.toUpperCase().indexOf(city.toUpperCase()) > -1;
