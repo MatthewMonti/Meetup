@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { InfoAlert } from '../components/Alert.jsx';
 import { ErrorAlert } from '../components/Alert';
-import Alert from '../components/Alert';
 import React from 'react';
 test('renders InfoAlert with the correct styles', () => {
   render(<InfoAlert text="This is an info alert" />);
