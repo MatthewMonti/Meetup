@@ -6,8 +6,7 @@ import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
 import { extractLocations, getEvents } from '../../api.js';
 import App from '../../App.jsx';
-
-
+import EventList from '../components/EventList';
 
 describe('<CitySearch /> component', ()  => {
   let allLocations;
@@ -133,6 +132,7 @@ describe('<CitySearch /> component', ()  => {
 describe('<CitySearch /> integration', () => {
   let allLocations;
   let citySearchComponent;
+  let eventListComponent;
 
   // Fetch data before running any tests
   beforeAll(async () => {
@@ -148,6 +148,7 @@ describe('<CitySearch /> integration', () => {
       setInfoAlert={() => { }}
       />
     );
+    eventListComponent = render(<EventList />);
   });
   
   test('renders suggestions list when the app is rendered.', async () => {
@@ -171,8 +172,7 @@ describe('<CitySearch /> integration', () => {
     });
   });
 
-  // Test cases
-test("hides suggestions when clicking outside the CitySearch component", async () => {
+test("hide list clicking outside element", async () => {
 
   const user = userEvent.setup();
   const AppComponent = render(<App />);
@@ -183,33 +183,12 @@ test("hides suggestions when clicking outside the CitySearch component", async (
   const allEvents = await getEvents();
   const allLocations = extractLocations(allEvents); 
   // Ensure the list is initially visible
-  expect(screen.getByTestId("CitySearch")).toBeInTheDocument();
+  expect(screen.getByTestId("CityList")).toBeInTheDocument();
 
   // Click outside (on the <h1>)
   fireEvent.mouseDown(screen.getByTestId("outside-element"));
 
   // The list should disappear
-  expect(screen.queryByTestId("CitySearch")).not.toBeInTheDocument();
-});
-
-
-test("does not hide suggestions when clicking inside the CitySearch component", async () => {
-
-  const user = userEvent.setup();
-  const AppComponent = render(<App />);
-  const AppDOM = AppComponent.container.firstChild;
-  const CitySearchDOM = within(AppDOM).queryByTestId('city-search');
-  const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
-  await user.click(cityTextBox);
-  const allEvents = await getEvents();
-  const allLocations = extractLocations(allEvents); 
-  // Ensure the list is initially visible
-  expect(screen.getByTestId("CitySearch")).toBeInTheDocument();
-
-  // Click outside (on the <h1>)
-  fireEvent.mouseDown(screen.getByTestId("outside-element"));
-
-  // The list should disappear
-  expect(screen.queryByTestId("CitySearch")).not.toBeInTheDocument();
+  expect(screen.queryByTestId("CityList")).not.toBeInTheDocument();
 });
 });

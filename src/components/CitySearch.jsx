@@ -75,7 +75,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
       />
 
       {showSuggestions && (
-        <ul className="suggestions" ref={SuggestionListRef}>
+        <ul data-testid="CityList" className="suggestions" ref={SuggestionListRef}>
           <div className="listCities">
             {suggestions.map((suggestion, index) => (
               <li
