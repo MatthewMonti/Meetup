@@ -186,7 +186,7 @@ test("hide list clicking outside element", async () => {
   expect(screen.getByTestId("CityList")).toBeInTheDocument();
 
   // Click outside (on the <h1>)
-  fireEvent.mouseDown(screen.getByTestId("outside-element"));
+  await user.click(screen.getByRole("heading", { level: 1 }));
 
   // The list should disappear
   expect(screen.queryByTestId("CityList")).not.toBeInTheDocument();
