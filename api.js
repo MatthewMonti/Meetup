@@ -1,7 +1,4 @@
-// src/api.js
 
-
-import mockData from './mock-data';
 
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
