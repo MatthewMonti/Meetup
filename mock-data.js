@@ -1482,7 +1482,7 @@ const mockData = [
         "updated": "2020-07-01T15:27:30.216Z",
         "summary": "AngularJS Workshop",
         "description": "Developed by Google, AngularJS is a relatively new JavaScript, and it is designed to make front-end development as easy as possible for you. \n\nJoin us to get introduced to this wonderful framework and dive deep into its features.",
-        "location": "Cape Town, South Africa",
+        "location": "Cape Town, Mars",
         "creator": {
          "email": "fullstackwebdev@careerfoundry.com",
          "self": true
