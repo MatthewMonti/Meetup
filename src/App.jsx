@@ -1,11 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import CitySearch from './src/components/CitySearch';
-import EventList from './src/components/EventList';
-import NumberOfEvents from './src/components/NumberOfEvents'
+import CitySearch from './components/CitySearch';
+import EventList from './components/EventList';
+import NumberOfEvents from './components/NumberOfEvents'
 import { getEvents, extractLocations } from './api';
 import './App.css';
-import { InfoAlert, ErrorAlert } from './src/components/Alert'
+import { InfoAlert, ErrorAlert } from './components/Alert'
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);

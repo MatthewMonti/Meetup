@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import '../../App.css'
+import '../../src/App.css';
 const Button = ({ event }) => {
   const [details, setDetails] = useState(true);
 

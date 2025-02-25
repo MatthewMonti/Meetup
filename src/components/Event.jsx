@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button'
-import '../../App.css'
+import '../../src/App.css';
 
 // src/components/Event.js
 const Event = ({event}) => {

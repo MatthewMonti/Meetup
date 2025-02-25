@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect, useRef } from "react";
-import '../../App.css';
+import '../../src/App.css';
 
 const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
