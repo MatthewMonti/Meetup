@@ -1,7 +1,7 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { render, screen, within, fireEvent, waitFor } from '@testing-library/react';
-import mockData from '../../mock-data';
-import App from '../../App.jsx';
+import mockData from '../mock-data';
+import App from '../App';
 import React from 'react';
 const feature = loadFeature('./src/features/displayEvent.feature');
 

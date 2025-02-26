@@ -1,8 +1,8 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { render, screen, within, act } from '@testing-library/react';
-import App from '../../App.jsx'; // Adjust path based on your directory structure
+import App from '../App.jsx'; // Adjust path based on your directory structure
 import userEvent from '@testing-library/user-event';
-import {getEvents} from '../../api.js';
+import {getEvents} from '../api.js';
 import React from 'react';
 const feature = loadFeature('./src/features/listCount.feature');
 

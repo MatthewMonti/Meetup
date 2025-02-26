@@ -4,8 +4,8 @@ import React from 'react';
 import { render, within, waitFor, fireEvent, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
-import { extractLocations, getEvents } from '../../api.js';
-import App from '../../App.jsx';
+import { extractLocations, getEvents } from '../api.js';
+import App from '../App.jsx';
 import EventList from '../components/EventList';
 
 describe('<CitySearch /> component', ()  => {

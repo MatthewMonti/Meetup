@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, within, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {getEvents} from '../../api.js';
-import App from '../../App.jsx';
+import {getEvents} from '../api.js';
+import App from '../App.jsx';
 
 describe('<App /> component unit tests', () => {
   beforeEach(async () => {

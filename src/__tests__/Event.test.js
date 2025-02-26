@@ -1,6 +1,6 @@
 import React from 'react';
 import Event from "../components/Event";
-import mockData from "../../mock-data";
+import mockData from "../mock-data";
 import { render, screen } from '@testing-library/react';
 const event = mockData[0];
 
