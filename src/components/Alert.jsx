@@ -38,16 +38,23 @@ class CityAlert extends Alert {
   constructor(props) {
     super(props);
     this.color = 'rgb(30, 0, 249)'; // Valid blue shade
-    this.bgColor = 'rgb(220, 220, 255)'; // Light blue
+    this.bgColor = 'rgb(216, 214, 253)';  /* A light lavender shade */
   }
 }
 
 class NumberAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = 'rgb(255, 18, 17)'  /* Bright red */
+    this.color = 'rgb(255, 0, 0)'; // blue
     this.bgColor = 'rgb(255, 220, 220)'; // light blue
   }
 }
 
-export { CityAlert, NumberAlert};
+class EventAlert extends Alert {
+  constructor(props) {
+    super(props);
+    this.color = rgb(255, 112, 29) // A warm light orange
+    this.bgcolor = rgb(255, 228, 145)  /* Light orange/yellow */
+  }
+}
+export { CityAlert, NumberAlert, EventAlert};

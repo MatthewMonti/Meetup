@@ -30,7 +30,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
     } else {
       infoText = ""
     }
-    setInfoAlert(infoText);
+    setCityAlert(infoText);
 
   };
 
