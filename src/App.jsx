@@ -5,7 +5,7 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents'
 import { getEvents, extractLocations } from './api';
 import './App.css';
-import { InfoAlert, ErrorAlert } from './components/Alert'
+import { InfoAlert, NumberAlert } from './components/Alert'
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);
@@ -52,7 +52,7 @@ const App = () => {
         setErrorAlert={setErrorAlert} 
         />
       <div className="cityNumber-Message">
-        {errorAlert ? <ErrorAlert text={errorAlert}/> : null}
+        {errorAlert ? <NumberAlert text={errorAlert}/> : null}
       </div>
       <EventList events={events} />
     </div>
