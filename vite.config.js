@@ -37,7 +37,7 @@ export default defineConfig({
            "purpose": "maskable"
            }
        ],
-       "start_url": ".",
+       "start_url": "/",
        "display": "standalone",
        "theme_color": "#000000",
        "background_color": "#ffffff"
