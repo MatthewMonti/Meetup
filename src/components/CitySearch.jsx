@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import '../../src/App.css';
 
-const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
+const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState(allLocations);
@@ -26,11 +26,11 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
     let infoText;
     if (filteredLocations.length === 0) {
-      infoText = "We can not find the city you are looking for. Please try another city"
+      infoText = "City not in database"
     } else {
       infoText = ""
     }
-    setInfoAlert(infoText);
+    setCityAlert(infoText);
 
   };
 
@@ -39,7 +39,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
     setQuery(value);
     setShowSuggestions(false); // Hide suggestions
     setCurrentCity(value);
-    setInfoAlert("")
+    setCityAlert("")
   };
 
   // Handle clicking outside the dropdown

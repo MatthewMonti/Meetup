@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import '../App.css';
-const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
+const NumberOfEvents = ({ currentNOE, setCurrentNOE, setNumberAlert }) => {
     const [number, setNumber] = useState(currentNOE);
 
     const handleInputChanged = (event) => {
@@ -14,17 +14,17 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
 
         // Validate the input
         if (isNaN(numericValue)) {
-            setErrorAlert('Enter a valid number');
+            setNumberAlert('Enter a valid number');
         } else if (numericValue < 1) {
-            setErrorAlert('Number must be greater than 0');
+            setNumberAlert('Number must be greater than 0');
         } else if (numericValue > 32) {
-            setErrorAlert('Only a maximum of 32 is allowed');
+            setNumberAlert('Only a maximum of 32 is allowed');
         } else if (!Number.isInteger(numericValue)) {
-            setErrorAlert('Input must be a whole number')
+            setNumberAlert('Input must be a whole number')
         }
         else
         {
-            setErrorAlert('');
+            setNumberAlert('');
             setCurrentNOE(numericValue); // Update the main state only when input is valid
         }
     };

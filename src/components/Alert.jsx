@@ -34,7 +34,7 @@ class Alert extends Component {
   }
 }
 
-class InfoAlert extends Alert {
+class CityAlert extends Alert {
   constructor(props) {
     super(props);
     this.color = 'rgb(30, 0, 249)'; // Valid blue shade
@@ -50,4 +50,4 @@ class NumberAlert extends Alert {
   }
 }
 
-export { InfoAlert, NumberAlert};
+export { CityAlert, NumberAlert};

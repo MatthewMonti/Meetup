@@ -5,14 +5,17 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents'
 import { getEvents, extractLocations } from './api';
 import './App.css';
-import { InfoAlert, NumberAlert } from './components/Alert'
+import { CityAlert, NumberAlert } from './components/Alert'
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [currentNOE, setCurrentNOE] = useState('32');
-  const [errorAlert, setErrorAlert] = useState("");
-  const [infoAlert, setInfoAlert] = useState("")
+  const [cityAlert, setCityAlert] = useState("");
+  const [numberAlert, setNumberAlert] = useState("");
+
+
+
 
   // Trigger fetching when the city changes
   useEffect(() => {
@@ -36,23 +39,25 @@ const App = () => {
     <div className="App">
       <h1 data-testid="outside-element">Meetup App</h1>
       <img className="time" alt="meet-logo"src='/calendar.png'></img>
-      <div className="cityError-Message">
-        {infoAlert.length ? <InfoAlert text={infoAlert}/> : null}
-      </div>
       <CitySearch 
         //DATA FLOW REACT TOP TO DOWN AND UPDATE BY USER INTERACTION
         allLocations={allLocations} 
         setCurrentCity={setCurrentCity} 
-        setInfoAlert={setInfoAlert} 
+        setCityAlert={setCityAlert} 
         />
+      <br />
+      <br />
+      <div className="cityError-Message">
+        {cityAlert.length ? <CityAlert text={cityAlert}/> : null}
+      </div>
       <NumberOfEvents 
         //DATA FLOW REACT TOP TO DOWN AND UPDATE BY USER INTERACTION
         currentNOE={currentNOE}
         setCurrentNOE={setCurrentNOE}
-        setErrorAlert={setErrorAlert} 
+        setNumberAlert={setNumberAlert}
         />
       <div className="cityNumber-Message">
-        {errorAlert ? <NumberAlert text={errorAlert}/> : null}
+        {numberAlert ? <NumberAlert text={numberAlert}/> : null}
       </div>
       <EventList events={events} />
     </div>
