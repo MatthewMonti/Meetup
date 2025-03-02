@@ -26,11 +26,11 @@ const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
 
     let infoText;
     if (filteredLocations.length === 0) {
-      infoText = "City not in database"
+      infoText = "Please try another city that is in database"
     } else {
       infoText = ""
     }
-    setCityAlert(infoText);
+    setInfoAlert(infoText);
 
   };
 
@@ -39,7 +39,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
     setQuery(value);
     setShowSuggestions(false); // Hide suggestions
     setCurrentCity(value);
-    setCityAlert("")
+    setInfoAlert("")
   };
 
   // Handle clicking outside the dropdown
