@@ -9,7 +9,7 @@ import App from './App.jsx';
 //BELOW way to connect to atus
 //atatus.config('73ba51b05269405eab4f5af2f046caf0').install();
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration.js/index.js';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration.js';
 
 
 
