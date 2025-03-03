@@ -69,15 +69,20 @@ const checkToken = async (accessToken) => {
  * This function will fetch the list of all events
  */
 export const getEvents = async () => {
- 
+
+  
+
 
   if (window.location.href.startsWith("http://localhost")) {
     return mockData;
   }
+  if (!navigator.onLine) {
+    const events = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return events?JSON.parse(events):[];
+  }
  
   const token = await getAccessToken();
- 
- 
   if (token) {
     removeQuery();
     const url =  "https://pp3rdn62qf.execute-api.us-east-1.amazonaws.com/dev/api/get-calendar-events" + "/" + token;
@@ -87,6 +92,14 @@ export const getEvents = async () => {
       return result.events;
     } else return null;
   } 
+
+  const response = await fetch(url);
+  const result = await response.json();
+  if (result) {
+    NProgress.done();
+    localStorage.setItem("lastEvents", JSON.stringify(result.events));
+    return result.events;
+  } else return null;
 };
 
 const getToken = async (code) => {
