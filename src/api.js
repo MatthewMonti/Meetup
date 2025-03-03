@@ -1,6 +1,6 @@
 import mockData from './mock-data';
 import NProgress from 'nprogress';
-import 'nprogress/nprogress.css'; // import default CSS styles
+import 'nprogress/nprogress.css';  // Include the CSS for styling
 
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
