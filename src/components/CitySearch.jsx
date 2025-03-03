@@ -37,7 +37,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
     setQuery(value);
-    setShowSuggestions(false); // Hide suggestions
+    setShowSuggestions(true); // Hide suggestions
     setCurrentCity(value);
     setInfoAlert("")
   };
