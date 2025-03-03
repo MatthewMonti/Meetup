@@ -89,18 +89,16 @@ export const getEvents = async () => {
     const url =  "https://pp3rdn62qf.execute-api.us-east-1.amazonaws.com/dev/api/get-calendar-events" + "/" + token;
     const response = await fetch(url);
     const result = await response.json();
-    if (result) {
-      return result.events;
-    } else return null;
-  } 
 
-  const response = await fetch(url);
-  const result = await response.json();
   if (result) {
-    NProgress.done();
     localStorage.setItem("lastEvents", JSON.stringify(result.events));
+    NProgress.done();
     return result.events;
-  } else return null;
+  } else {
+    return null;
+  }
+};
+return null;
 };
 
 const getToken = async (code) => {
