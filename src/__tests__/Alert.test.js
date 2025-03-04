@@ -3,6 +3,7 @@ import { CityAlert } from '../components/Alert.jsx';
 import { NumberAlert } from '../components/Alert';
 import {EventAlert} from '../components/Alert';
 import React from 'react';
+
 test('renders CityAlert with the correct styles', () => {
   render(<CityAlert text="This is an info alert" />);
   
