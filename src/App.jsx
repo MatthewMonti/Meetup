@@ -27,19 +27,26 @@ const App = () => {
           ? allEvents
           : allEvents.filter(event => event.location === currentCity);
   
-        setEvents(filteredEvents.slice(0, currentNOE));
+        setEvents(filteredEvents.slice(0, Number(currentNOE))); // Ensure currentNOE is a number
         setAllLocations(extractLocations(allEvents));
+  
+        // If online, clear any previous offline alert
+        if (navigator.onLine) {
+          setEventAlert("");
+        }
       } catch (error) {
         console.error("Error fetching events:", error);
+        setEventAlert("Error fetching events. Please try again later.");
       }
     };
   
+    // Handle offline state
     if (!navigator.onLine) {
       setEventAlert("Currently viewing Offline Database");
+    } else {
+      fetchMeetings();
     }
-  
-    fetchMeetings();
-  }, [currentCity, currentNOE]);
+  }, [currentCity, currentNOE, navigator.onLine]); // Now reacts to online/offline status as well
 
   return (
     <div className="App">
