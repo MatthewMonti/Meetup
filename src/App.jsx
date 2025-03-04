@@ -50,6 +50,8 @@ const App = () => {
     };
 
     // Add event listeners to detect online/offline status changes
+    //online and offline strings predefined browser 
+    // events it knows what to do with
     window.addEventListener("online", handleOnline);
     window.addEventListener("offline", handleOffline);
   
