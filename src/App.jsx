@@ -31,13 +31,34 @@ const App = () => {
         console.error("Error fetching events:", error);
       }
     };
+
+        // Handler for when the user goes online
+        const handleOnline = () => {
+          setIsOnline(true);
+          setEventAlert(""); // Clear offline message
+          fetchMeetings(); // Refetch events when back online
+        };
+    
+        // Handler for when the user goes offline
+        const handleOffline = () => {
+          setIsOnline(false);
+          setEventAlert("Currently viewing Offline Database"); // Display offline message
+        };
+    
+        // Add event listeners to detect online/offline status changes
+        window.addEventListener("online", handleOnline);
+        window.addEventListener("offline", handleOffline);
+
+    if(navigator.onLine) {
+      setEventAlert("");
+    }
   
     if (!navigator.onLine) {
       setEventAlert("Currently viewing Offline Database");
     }
   
     fetchMeetings();
-  }, [currentCity, currentNOE]);
+  }, [currentCity, currentNOE, isOnline]);
 
   return (
     <div className="App">
