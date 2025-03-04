@@ -17,7 +17,6 @@ const App = () => {
   const [eventAlert, setEventAlert] = useState("");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
-  // Effect to fetch events when city, number of events, or online status changes
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
@@ -26,48 +25,19 @@ const App = () => {
           ? allEvents
           : allEvents.filter(event => event.location === currentCity);
   
-        setEvents(filteredEvents.slice(0, Number(currentNOE))); // Ensure currentNOE is a number
+        setEvents(filteredEvents.slice(0, currentNOE));
         setAllLocations(extractLocations(allEvents));
-        setEventAlert(""); // Clear any previous error messages
       } catch (error) {
         console.error("Error fetching events:", error);
-        // Sets error message if fetching fails
-        setEventAlert("Error fetching events. Please try again later.");
       }
     };
-
-    // Handler for when the user goes online
-    const handleOnline = () => {
-      setIsOnline(true);
-      setEventAlert(""); // Clear offline message
-      fetchMeetings(); // Refetch events when back online
-    };
-
-    // Handler for when the user goes offline
-    const handleOffline = () => {
-      setIsOnline(false);
-      setEventAlert("Currently viewing Offline Database"); // Display offline message
-    };
-
-    // Add event listeners to detect online/offline status changes
-    //online and offline strings predefined browser 
-    // events it knows what to do with
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
   
-    // Check if the user is offline when the component first mounts
     if (!navigator.onLine) {
       setEventAlert("Currently viewing Offline Database");
-    } else {
-      fetchMeetings(); // Fetch events if online
     }
-
-    // Cleanup function to remove event listeners when the component unmounts
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
-    };
-  }, [currentCity, currentNOE, isOnline]); 
+  
+    fetchMeetings();
+  }, [currentCity, currentNOE]);
 
   return (
     <div className="App">
