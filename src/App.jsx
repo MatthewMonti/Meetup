@@ -5,7 +5,8 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents'
 import { getEvents, extractLocations } from './api';
 import './App.css';
-import {CityAlert, NumberAlert, EventAlert } from './components/Alert'
+import { CityAlert, NumberAlert, EventAlert } from './components/Alert';
+
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);
@@ -14,11 +15,9 @@ const App = () => {
   const [cityAlert, setCityAlert] = useState("");
   const [numberAlert, setNumberAlert] = useState("");
   const [eventAlert, setEventAlert] = useState("");
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
-
-
-
-  // Trigger fetching when the city changes
+  // Effect to fetch events when city, number of events, or online status changes
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
@@ -29,55 +28,73 @@ const App = () => {
   
         setEvents(filteredEvents.slice(0, Number(currentNOE))); // Ensure currentNOE is a number
         setAllLocations(extractLocations(allEvents));
-  
-        // If online, clear any previous offline alert
-        if (navigator.onLine) {
-          setEventAlert("");
-        }
+        setEventAlert(""); // Clear any previous error messages
       } catch (error) {
         console.error("Error fetching events:", error);
+        // Sets error message if fetching fails
         setEventAlert("Error fetching events. Please try again later.");
       }
     };
+
+    // Handler for when the user goes online
+    const handleOnline = () => {
+      setIsOnline(true);
+      setEventAlert(""); // Clear offline message
+      fetchMeetings(); // Refetch events when back online
+    };
+
+    // Handler for when the user goes offline
+    const handleOffline = () => {
+      setIsOnline(false);
+      setEventAlert("Currently viewing Offline Database"); // Display offline message
+    };
+
+    // Add event listeners to detect online/offline status changes
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
   
-    // Handle offline state
+    // Check if the user is offline when the component first mounts
     if (!navigator.onLine) {
       setEventAlert("Currently viewing Offline Database");
     } else {
-      fetchMeetings();
+      fetchMeetings(); // Fetch events if online
     }
-  }, [currentCity, currentNOE, navigator.onLine]); // Now reacts to online/offline status as well
+
+    // Cleanup function to remove event listeners when the component unmounts
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, [currentCity, currentNOE, isOnline]); 
 
   return (
     <div className="App">
       <h1 data-testid="outside-element">Meetup App</h1>
-      <img className="time" alt="meet-logo"src='/calendar.png'></img>
+      <img className="time" alt="meet-logo" src='/calendar.png'></img>
       <div className="cityError-Message">
         {eventAlert.length ? <EventAlert text={eventAlert}/> : null}
       </div>
       <CitySearch 
-        //DATA FLOW REACT TOP TO DOWN AND UPDATE BY USER INTERACTION
         allLocations={allLocations} 
         setCurrentCity={setCurrentCity} 
         setCityAlert={setCityAlert} 
-        />
+      />
       <br />
       <br />
       <div className="cityError-Message">
         {cityAlert.length ? <CityAlert text={cityAlert}/> : null}
       </div>
       <NumberOfEvents 
-        //DATA FLOW REACT TOP TO DOWN AND UPDATE BY USER INTERACTION
         currentNOE={currentNOE}
         setCurrentNOE={setCurrentNOE}
         setNumberAlert={setNumberAlert}
-        />
+      />
       <div className="cityNumber-Message">
         {numberAlert ? <NumberAlert text={numberAlert}/> : null}
       </div>
       <EventList 
-      events={events} 
-      setEventAlert={setEventAlert}
+        events={events} 
+        setEventAlert={setEventAlert}
       />
     </div>
   );
