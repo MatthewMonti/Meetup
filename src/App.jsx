@@ -20,24 +20,24 @@ const App = () => {
 
   // Trigger fetching when the city changes
   useEffect(() => {
-    if (navigator.onLine) {
-     ""
-    } else {
-     "Currently viewing Offline Database"
+    const fetchMeetings = async () => {
+      try {
+        const allEvents = await getEvents();
+        const filteredEvents = currentCity === "See all cities"
+          ? allEvents
+          : allEvents.filter(event => event.location === currentCity);
+  
+        setEvents(filteredEvents.slice(0, currentNOE));
+        setAllLocations(extractLocations(allEvents));
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+  
+    if (!navigator.onLine) {
+      setEventAlert("Currently viewing Offline Database");
     }
-      // Fetch meetings/events based on the current city
-  const fetchMeetings = async () => {
-    try {
-      const allEvents = await getEvents();
-      const filteredEvents = currentCity === "See all cities"
-        ? allEvents
-        : allEvents.filter(event => event.location === currentCity);
-      setEvents(filteredEvents.slice(0, currentNOE));
-      setAllLocations(extractLocations(allEvents)); // Extract unique locations
-    } catch (error) {
-      console.error("Error fetching events:", error);
-    }
-  };
+  
     fetchMeetings();
   }, [currentCity, currentNOE]);
 
