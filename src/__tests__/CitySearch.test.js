@@ -23,7 +23,7 @@ describe('<CitySearch /> component', ()  => {
       <CitySearch 
         allLocations={allLocations} 
         setCurrentCity={() => {}}
-        setInfoAlert={() => { }}
+        setCityAlert={() => { }}
       />
     );
   });
@@ -145,7 +145,7 @@ describe('<CitySearch /> integration', () => {
       <CitySearch 
       allLocations={allLocations} 
       setCurrentCity={() => {}}
-      setInfoAlert={() => { }}
+      setCityAlert={() => { }}
       />
     );
     eventListComponent = render(<EventList />);

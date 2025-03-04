@@ -53,8 +53,8 @@ class NumberAlert extends Alert {
 class EventAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = rgb(255, 112, 29) // A warm light orange
-    this.bgcolor = rgb(255, 228, 145)  /* Light orange/yellow */
+    this.color = 'rgb(255, 112, 29)'; // A warm light orange
+    this.bgColor ='rgb(255, 228, 145)';  /* Light orange/yellow */
   }
 }
 export { CityAlert, NumberAlert, EventAlert};

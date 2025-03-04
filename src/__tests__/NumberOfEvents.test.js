@@ -9,7 +9,7 @@ describe('<NumberOfEvents /> Component', () => {
             <NumberOfEvents
                 currentNOE={32} 
                 setCurrentNOE={() => {}}
-                setErrorAlert={() => {}}
+                setNumberAlert={() => {}}
             />
         );
     });
@@ -54,7 +54,7 @@ describe('<NumberOfEvents /> integration tests', () => {
             <NumberOfEvents
                 currentNOE={32} 
                 setCurrentNOE={() => {}}
-                setErrorAlert={() => {}}
+                setNumberAlert={() => {}}
             />
         );
     });
