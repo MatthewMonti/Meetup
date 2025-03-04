@@ -7,7 +7,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState(allLocations);
   const SuggestionListRef = useRef(null);
-
+  const [eventAlert, setEventAlert] = useState("");
   const handleInputChanged = (event) => {
     const city = event.target.value
     
@@ -39,7 +39,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
     setQuery(value);
     setShowSuggestions(false); // Hide suggestions
     setCurrentCity(value);
-    setInfoAlert("")
+    setEventAlert("");
   };
 
   // Handle clicking outside the dropdown
