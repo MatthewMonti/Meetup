@@ -5,7 +5,7 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents'
 import { getEvents, extractLocations } from './api';
 import './App.css';
-import { CityAlert, NumberAlert } from './components/Alert'
+import {CityAlert, NumberAlert, EventAlert } from './components/Alert'
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);
@@ -13,12 +13,18 @@ const App = () => {
   const [currentNOE, setCurrentNOE] = useState('32');
   const [cityAlert, setCityAlert] = useState("");
   const [numberAlert, setNumberAlert] = useState("");
+  const [eventAlert, setEventAlert] = useState("");
 
 
 
 
   // Trigger fetching when the city changes
   useEffect(() => {
+    if (navigator.onLine) {
+     ""
+    } else {
+     "Currently viewing Offline Database"
+    }
       // Fetch meetings/events based on the current city
   const fetchMeetings = async () => {
     try {
@@ -39,6 +45,9 @@ const App = () => {
     <div className="App">
       <h1 data-testid="outside-element">Meetup App</h1>
       <img className="time" alt="meet-logo"src='/calendar.png'></img>
+      <div className="cityError-Message">
+        {eventAlert.length ? <EventAlert text={eventAlert}/> : null}
+      </div>
       <CitySearch 
         //DATA FLOW REACT TOP TO DOWN AND UPDATE BY USER INTERACTION
         allLocations={allLocations} 
@@ -59,7 +68,10 @@ const App = () => {
       <div className="cityNumber-Message">
         {numberAlert ? <NumberAlert text={numberAlert}/> : null}
       </div>
-      <EventList events={events} />
+      <EventList 
+      events={events} 
+      setEventAlert={setEventAlert}
+      />
     </div>
   );
 }
