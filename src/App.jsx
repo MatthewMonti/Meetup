@@ -17,6 +17,11 @@ const App = () => {
   const [eventAlert, setEventAlert] = useState("");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
+  const updateOnlineStatus = () => {
+    const online = navigator.onLine;
+    setIsOnline(online);
+    setEventAlert(online ? "" : "Currently viewing Offline Database");
+  };
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
@@ -32,32 +37,15 @@ const App = () => {
       }
     };
 
-        // Handler for when the user goes online
-        const handleOnline = () => {
-          setIsOnline(true);
-          setEventAlert(""); // Clear offline message
-          fetchMeetings(); // Refetch events when back online
-        };
-    
-        // Handler for when the user goes offline
-        const handleOffline = () => {
-          setIsOnline(false);
-          setEventAlert("Currently viewing Offline Database"); // Display offline message
-        };
-    
-        // Add event listeners to detect online/offline status changes
-        window.addEventListener("online", handleOnline);
-        window.addEventListener("offline", handleOffline);
-
-    if(navigator.onLine) {
-      setEventAlert("");
-    }
-  
-    if (!navigator.onLine) {
-      setEventAlert("Currently viewing Offline Database");
-    }
-  
+    updateOnlineStatus();
     fetchMeetings();
+    window.addEventListener("online", updateOnlineStatus);
+    window.addEventListener("offline", updateOnlineStatus);
+  
+    return () => {
+      window.removeEventListener("online", updateOnlineStatus);
+      window.removeEventListener("offline", updateOnlineStatus);
+    };
   }, [currentCity, currentNOE, isOnline]);
 
   return (
