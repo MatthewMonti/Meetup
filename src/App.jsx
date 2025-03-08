@@ -46,7 +46,7 @@ const App = () => {
       window.removeEventListener("online", updateOnlineStatus);
       window.removeEventListener("offline", updateOnlineStatus);
     };
-  }, [currentCity, currentNOE, isOnline]);
+  }, [currentCity, currentNOE]);
 
   return (
     <div className="App">
