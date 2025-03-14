@@ -7,7 +7,8 @@ import {
   XAxis, YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
+  Label
 } from 'recharts';
 
 const CityEventsChart = ({ allLocations, events }) => {
@@ -27,18 +28,22 @@ const CityEventsChart = ({ allLocations, events }) => {
   };
 
   return (
-    <ResponsiveContainer width="99%" height={400}>
+    <ResponsiveContainer width="50%" height={400}>
       <ScatterChart
         margin={{
-          top: 20,
-          right: 20,
+          top: 5,
+          right: 5,
           bottom: 20,
-          left: 20,
+          left: 120,
         }}
       >
         <CartesianGrid />
-        <XAxis type="category" dataKey="city" name="City" />
-        <YAxis type="number" dataKey="count" name="Number of events" allowDecimals={false} />
+        <XAxis type="category" dataKey="city" name="City">
+        <Label value="Location of Meetings" offset={-15} position="insideBottom" />
+          </XAxis>
+        <YAxis value="number of meetings" type="number" dataKey="count" name="Number of events" allowDecimals={false} >
+        <Label value="Number of Meetings" offset={-110} position="insideLeft" />
+          </YAxis>
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />
         <Scatter name="A school" data={data} fill="#8884d8" />
       </ScatterChart>
