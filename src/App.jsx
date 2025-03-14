@@ -6,7 +6,7 @@ import NumberOfEvents from './components/NumberOfEvents'
 import { getEvents, extractLocations } from './api';
 import './App.css';
 import { CityAlert, NumberAlert, EventAlert } from './components/Alert';
-
+import CityEventsChart from './components/CityEventsChart';
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);
@@ -73,6 +73,7 @@ const App = () => {
       <div className="cityNumber-Message">
         {numberAlert ? <NumberAlert text={numberAlert}/> : null}
       </div>
+      <CityEventsChart allLocations={allLocations} events={events} />
       <EventList 
         events={events} 
         setEventAlert={setEventAlert}
