@@ -73,6 +73,7 @@ const App = () => {
       <div className="cityNumber-Message">
         {numberAlert ? <NumberAlert text={numberAlert}/> : null}
       </div>
+      <EventGenresChart events={events} />
       <CityEventsChart allLocations={allLocations} events={events} />
       <br />
       <EventList 
