@@ -7,6 +7,7 @@ import { getEvents, extractLocations } from './api';
 import './App.css';
 import { CityAlert, NumberAlert, EventAlert } from './components/Alert';
 import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);
