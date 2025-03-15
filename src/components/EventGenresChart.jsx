@@ -5,17 +5,17 @@ import { useEffect, useState} from 'react';
 const EventGenresChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS' ];
-  const colors = ['#0088FE','#00C49F','#FFBB28','#FF8042','#8884d8'];
+  const COLORS = ['#0088FE','#00C49F','#FFBB28','#FF8042','#8884d8'];
   useEffect(() => {
     setData(getData());
-  }, [`${events}`, `${allLocations}`, `${genres}`, `${colors}`]);
+  }, [`${events}`, `${allLocations}`]);
 
 
   const getData = () => {
-    const data = events.map((summary) => {
-      const countnumber = events.filter((event) => events.summary === summary).length
-      const genre = summary.split((/, | - /))[0]
-      return { countnumber, genre };
+    const data = events.map((event) => {
+      const countnumber = events.filter((e) => e.summary === event.summary).length
+      const genres = event.summary.split((/, | - /))[0]
+      return { countnumber, genres };
     })
     return data;
   };
@@ -24,7 +24,7 @@ const EventGenresChart = ({ allLocations, events }) => {
     <ResponsiveContainer width="50%" height={400}>
       <PieChart width={400} height ={400}>
         <Pie 
-            data="data" 
+            data={data}
             cx="50%" 
             cy="50%"
             labelLine={false}
@@ -32,7 +32,7 @@ const EventGenresChart = ({ allLocations, events }) => {
             fill="#8884d8"
             dataKey="value"
         >
-            {events.map((entry, index) => (
+            {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
         </Pie>
