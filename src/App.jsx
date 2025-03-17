@@ -60,6 +60,7 @@ const App = () => {
         allLocations={allLocations} 
         setCurrentCity={setCurrentCity} 
         setCityAlert={setCityAlert} 
+        currentCity={currentCity}
       />
       <br />
       <br />
@@ -74,8 +75,14 @@ const App = () => {
       <div className="cityNumber-Message">
         {numberAlert ? <NumberAlert text={numberAlert}/> : null}
       </div>
-      <EventGenresChart events={events} />
-      <CityEventsChart allLocations={allLocations} events={events} />
+      <CityEventsChart 
+      currentCity={currentCity} 
+      setCurrentCity={setCurrentCity} 
+      setAllLocations={setAllLocations} 
+      allLocations={allLocations} 
+      events={events} 
+      setEvents={setEvents}
+      />
       <br />
       <EventList 
         events={events} 

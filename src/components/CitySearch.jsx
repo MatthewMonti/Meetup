@@ -2,23 +2,27 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import '../../src/App.css';
 
-const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
+const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert }) => {
+    const [city, setCity] = useState(currentCity);
+  
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState(allLocations);
   const SuggestionListRef = useRef(null);
   const [eventAlert, setEventAlert] = useState("");
+
+
+
+
   const handleInputChanged = (event) => {
-    const city = event.target.value
-    
+    const value = event.target.value;
     const filteredLocations = allLocations ? allLocations.filter((location) => {
-      return location.toUpperCase().indexOf(city.toUpperCase()) > -1;
+      return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     }) : [`${allLocations}`];
 
-    setQuery(city);
+    setCity(value);
     setSuggestions(filteredLocations);
 
-    if (city === '') {
+    if (value === '') {
       setShowSuggestions(false);
     } else {
       setShowSuggestions(true)
@@ -31,12 +35,13 @@ const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
       infoText = ""
     }
     setCityAlert(infoText);
+    setCurrentCity(value);
 
   };
 
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
-    setQuery(value);
+    setCity(value);
     setShowSuggestions(false); // Hide suggestions
     setCurrentCity(value);
     setEventAlert("");
@@ -62,10 +67,10 @@ const CitySearch = ({ allLocations, setCurrentCity, setCityAlert }) => {
       <input
         type="text"
         className="city"
-        value={query}
+        value={city}
         onFocus={() => {
           // Show all suggestions when input is focused and the query is empty
-          if (query.trim() === "") {
+          if (city.trim() === "") {
             setSuggestions(allLocations);
             setShowSuggestions(true);
           }
