@@ -78,7 +78,6 @@ const App = () => {
       <CityEventsChart 
       currentCity={currentCity} 
       setCurrentCity={setCurrentCity} 
-      setAllLocations={setAllLocations} 
       allLocations={allLocations} 
       events={events} 
       setEvents={setEvents}
