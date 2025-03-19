@@ -17,8 +17,6 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE, setNumberAlert }) => {
             setNumberAlert('Enter a valid number');
         } else if (numericValue < 1) {
             setNumberAlert('Number must be greater than 0');
-        } else if (numericValue > 32) {
-            setNumberAlert('Only a maximum of 32 is allowed');
         } else if (!Number.isInteger(numericValue)) {
             setNumberAlert('Input must be a whole number')
         }
