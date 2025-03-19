@@ -82,6 +82,10 @@ const App = () => {
       events={events} 
       setEvents={setEvents}
       />
+      <EventGenresChart
+      events={events}
+      allLocations={allLocations}
+      />
       <br />
       <EventList 
         events={events} 

@@ -8,18 +8,16 @@ const EventGenresChart = ({ allLocations, events }) => {
   const COLORS = ['#0088FE','#00C49F','#FFBB28','#FF8042','#8884d8'];
   useEffect(() => {
     setData(getData());
-  }, [`${events}`, `${allLocations}`]);
+  }, [`${events}`]);
 
 
   const getData = () => {
-    const data = events.map((event) => {
-      const countnumber = events.filter((e) => e.summary === event.summary).length
-      const genres = event.summary.split((/, | - /))[0]
-      return { countnumber, genres };
+    const data = allLocations.map((location) => {
+      const countnumber = events.filter((event) => event.location === location).length
+      return { countnumber };
     })
     return data;
   };
-
   return (
     <ResponsiveContainer width="50%" height={400}>
       <PieChart width={400} height ={400}>
@@ -30,7 +28,7 @@ const EventGenresChart = ({ allLocations, events }) => {
             labelLine={false}
             outerRadius={80}
             fill="#8884d8"
-            dataKey="value"
+            dataKey="countnumber"
         >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
