@@ -29,8 +29,10 @@ const App = () => {
       try {
         const allEvents = await getEvents();
        // const defaultFiltered= ? setCurrentCity("See all cities") : setCurrentCity(currentCity)
-        const defaultFiltered = currentCity === "" ? setCurrentCity("See all cities") : setCurrentCity(currentCity);
-  
+        //const defaultFiltered = currentCity === "" ? setCurrentCity("See all cities") : setCurrentCity(currentCity);
+        // better reability and code is used better 
+        const defaultCity = currentCity === "" ? "See all cities" : currentCity;
+        setCurrentCity(defaultCity);
         const filteredEvents = currentCity === "See all cities"
           ? allEvents
           : allEvents.filter(event => event.location === currentCity);
