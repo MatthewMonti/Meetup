@@ -11,12 +11,13 @@ import EventGenresChart from './components/EventGenresChart';
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);
-  const [currentCity, setCurrentCity] = useState("See all cities");
+  const [currentCity, setCurrentCity] = useState("");
   const [currentNOE, setCurrentNOE] = useState('32');
   const [cityAlert, setCityAlert] = useState("");
   const [numberAlert, setNumberAlert] = useState("");
   const [eventAlert, setEventAlert] = useState("");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
+ // const [defaultFiltered, setDefaultFiltered] = useState("")
 
   const updateOnlineStatus = () => {
     const online = navigator.onLine;
@@ -27,12 +28,19 @@ const App = () => {
     const fetchMeetings = async () => {
       try {
         const allEvents = await getEvents();
+       // const defaultFiltered= ? setCurrentCity("See all cities") : setCurrentCity(currentCity)
+        const defaultFiltered = currentCity === "" ? setCurrentCity("See all cities") : setCurrentCity(currentCity);
+  
         const filteredEvents = currentCity === "See all cities"
           ? allEvents
           : allEvents.filter(event => event.location === currentCity);
-  
+
+        
         setEvents(filteredEvents.slice(0, currentNOE));
+
+
         setAllLocations(extractLocations(allEvents));
+
       } catch (error) {
         console.error("Error fetching events:", error);
       }
