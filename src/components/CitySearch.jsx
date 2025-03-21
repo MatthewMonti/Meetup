@@ -67,6 +67,7 @@ const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert }
       <input
         type="text"
         className="city"
+        placeholder="Search City for meetings"
         value={city}
         onFocus={() => {
           // Show all suggestions when input is focused and the query is empty
