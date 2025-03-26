@@ -8,12 +8,12 @@ const EventGenresChart = ({ allLocations, events }) => {
   const COLORS = ['#0088FE','#00C49F','#FFBB28','#FF8042','#8884d8'];
   useEffect(() => {
     setData(getData());
-  }, [events]);
+  }, [`${events}`]);
 
 
   const getData = () => {
-    const data = allLocations.map((location) => {
-      const countnumber = events.filter((event) => event.location === location).length
+    const data = events.map((summary) => {
+      const countnumber = events.filter((event) => event.summary === "React").length
       return { countnumber };
     })
     return data;

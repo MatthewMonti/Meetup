@@ -59,7 +59,8 @@ const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert})
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [allLocations]);
+  }), [`${allLocations}`];
+
 
   return (
     <div id="citySearch" data-testid="city-search">

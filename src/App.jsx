@@ -31,14 +31,14 @@ const App = () => {
        // const defaultFiltered= ? setCurrentCity("See all cities") : setCurrentCity(currentCity)
         //const defaultFiltered = currentCity === "" ? setCurrentCity("See all cities") : setCurrentCity(currentCity);
         // better reability and code is used better 
-        const defaultCity = currentCity === "" ? "See all cities" : currentCity;
+        const defaultCity = `${currentCity}` === "" ? "See all cities" :`${currentCity}`;
         setCurrentCity(defaultCity);
-        const filteredEvents = currentCity === "See all cities"
+        const filteredEvents = `${currentCity}` === "See all cities"
           ? allEvents
-          : allEvents.filter(event => event.location === currentCity);
+          : allEvents.filter(event => event.location === `${currentCity}`);
 
         
-        setEvents(filteredEvents.slice(0, currentNOE));
+        setEvents(filteredEvents.slice(0, `${currentNOE}`));
 
 
         setAllLocations(extractLocations(allEvents));
@@ -57,7 +57,7 @@ const App = () => {
       window.removeEventListener("online", updateOnlineStatus);
       window.removeEventListener("offline", updateOnlineStatus);
     };
-  }, [currentCity, currentNOE]);
+  }, [`${currentCity}`,`${currentNOE}`]);
 
   return (
     <div className="App">
