@@ -11,7 +11,7 @@ import {
   Label
 } from 'recharts';
 
-const CityEventsChart = ({ allLocations, events, currentCity }) => {
+const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState("");
 
   useEffect(() => {
