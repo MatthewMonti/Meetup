@@ -16,7 +16,7 @@ const CityEventsChart = ({ allLocations, events, currentCity }) => {
 
   useEffect(() => {
     setData(getData());
-  }, [`${events}`]
+  }, [events]
 );
 
 
