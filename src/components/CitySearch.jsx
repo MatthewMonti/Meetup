@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import '../../src/App.css';
 
 const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert}) => {
-    const [city, setCity] = useState(currentCity);
   
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSuggestions] = useState(allLocations);
@@ -15,9 +14,9 @@ const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert})
     const value = event.target.value;
     const filteredLocations = allLocations ? allLocations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-    }) : [allLocations];
+    }) : [`${allLocations}`];
 
-    setCity(value);
+    setCurrentCity(value);
     setSuggestions(filteredLocations);
 
 
@@ -35,16 +34,14 @@ const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert})
       infoText = ""
     }
     setCityAlert(infoText);
-    setCurrentCity(value);
-
   };
 
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
-    setCity(value);
     setShowSuggestions(false); // Hide suggestions
     setCurrentCity(value);
     setEventAlert("");
+   // setCurrentNOE("10");
   };
 
   // Handle clicking outside the dropdown
@@ -69,10 +66,10 @@ const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert})
         type="text"
         className="city"
         placeholder="Search City for meetings"
-        value={city}
+        value={currentCity}
         onFocus={() => {
           // Show all suggestions when input is focused and the query is empty
-          if (city.trim() === "" || city === currentCity) {
+          if (currentCity.trim() === "" || currentCity === currentCity) {
             setSuggestions(allLocations);
             setShowSuggestions(true);
           } 

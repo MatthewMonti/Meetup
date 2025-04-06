@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import '../App.css';
-const NumberOfEvents = ({ currentNOE, setCurrentNOE, setNumberAlert }) => {
-    const [number, setNumber] = useState(currentNOE);
+const NumberOfEvents = ({setCurrentNOE, currentNOE, setNumberAlert }) => {
 
     const handleInputChanged = (event) => {
         const value = event.target.value;
@@ -10,7 +9,7 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE, setNumberAlert }) => {
         // Convert value to a number if it's a valid numeric string
         const numericValue = Number(value);
 
-        setNumber(value);
+        setCurrentNOE(value);
 
         // Validate the input
         if (isNaN(numericValue)) {
@@ -32,8 +31,8 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE, setNumberAlert }) => {
             <h5>Number of Events:</h5>
                 <input 
                     className="eventNumber"
-                    type="text"
-                    value={number}
+                    type="number"
+                    value={currentNOE}
                     onChange={handleInputChanged}
                     data-testid="NumberOfEventsInput"
                 />
