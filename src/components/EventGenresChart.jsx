@@ -1,39 +1,43 @@
 import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 import { useEffect, useState} from 'react';
 
 const EventGenresChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
-  const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS' ];
+  const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular' ];
   const COLORS = ['#0088FE','#00C49F','#FFBB28','#FF8042','#8884d8'];
-  useEffect(() => {
-    setData(getData());
-  }, [`${events}`]);
-
-
   const getData = () => {
-    const data = events.map((summary) => {
-      const countnumber = events.filter((event) => event.summary === "React").length
-      return { countnumber };
+    const data = genres.map((genre) => {
+      const filteredEvents = events.filter(event => event.summary.includes(genre));      
+      return {
+        name: genre,
+        value: filteredEvents.length
+      }
     })
     return data;
   };
+  useEffect(() => {
+    setData(getData());
+  }, [events]);
+
+
+
   return (
     <ResponsiveContainer width="50%" height={400}>
-      <PieChart width={400} height ={400}>
-        <Pie 
+      <PieChart width={400} height ={400} >
+        <Pie
             data={data}
-            cx="50%" 
-            cy="50%"
             labelLine={false}
-            outerRadius={80}
+            outerRadius={125}
             fill="#8884d8"
-            dataKey="countnumber"
+            dataKey="value"
+            label="name"
         >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
         </Pie>
+        <Legend verticalAlign="bottom" height={36}/>
       </PieChart>
     </ResponsiveContainer>
   );

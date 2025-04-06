@@ -31,15 +31,14 @@ const App = () => {
        // const defaultFiltered= ? setCurrentCity("See all cities") : setCurrentCity(currentCity)
         //const defaultFiltered = currentCity === "" ? setCurrentCity("See all cities") : setCurrentCity(currentCity);
         // better reability and code is used better 
-        const defaultCity = `${currentCity}` === "" ? "See all cities" :`${currentCity}`;
+        const defaultCity = currentCity === "" ? "See all cities" :`${currentCity}`;
         setCurrentCity(defaultCity);
-        const filteredEvents = `${currentCity}` === "See all cities"
+        const filteredEvents = currentCity === "See all cities"
           ? allEvents
-          : allEvents.filter(event => event.location === `${currentCity}`);
+          : allEvents.filter(event => event.location === currentCity);
 
         
-        setEvents(filteredEvents.slice(0, `${currentNOE}`));
-
+        setEvents(filteredEvents.slice(0, currentNOE));
 
         setAllLocations(extractLocations(allEvents));
 
@@ -57,7 +56,7 @@ const App = () => {
       window.removeEventListener("online", updateOnlineStatus);
       window.removeEventListener("offline", updateOnlineStatus);
     };
-  }, [`${currentCity}`,`${currentNOE}`]);
+  }, [currentCity, currentNOE]);
 
   return (
     <div className="App">
@@ -71,9 +70,9 @@ const App = () => {
         setCurrentCity={setCurrentCity} 
         setCityAlert={setCityAlert} 
         currentCity={currentCity}
+        setCurrentNOE={setCurrentNOE}
       />
-      <br />
-      <br />
+
       <div className="cityError-Message">
         {cityAlert.length ? <CityAlert text={cityAlert}/> : null}
       </div>
@@ -85,18 +84,15 @@ const App = () => {
       <div className="cityNumber-Message">
         {numberAlert ? <NumberAlert text={numberAlert}/> : null}
       </div>
+      <div className="charts-container">
       <CityEventsChart 
-      currentCity={currentCity} 
-      setCurrentCity={setCurrentCity} 
       allLocations={allLocations} 
       events={events} 
-      setEvents={setEvents}
       />
       <EventGenresChart
       events={events}
-      allLocations={allLocations}
       />
-      <br />
+      </div>
       <EventList 
         events={events} 
         setEventAlert={setEventAlert}

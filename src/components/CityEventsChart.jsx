@@ -9,17 +9,10 @@ import {
   Tooltip,
   ResponsiveContainer,
   Label
-} from 'recharts';
+} from 'recharts';   
 
-const CityEventsChart = ({ allLocations, events }) => {
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    setData(getData());
-  }, [events]
-);
-
-
+const CityEventsChart = ( {allLocations, events} ) => {
+  const [data, setData] = useState([]);
   const getData = () => {
     const data = allLocations.map((location) => {
       const countnumber = events.filter((event) => event.location === location).length
@@ -28,9 +21,16 @@ const CityEventsChart = ({ allLocations, events }) => {
     })
     return data;
   };
+  useEffect(() => {
+    setData(getData());
+  }, [`${events}`]
+);
+
+
+
 
   return (
-    <ResponsiveContainer width="99%" height={400}>
+    <ResponsiveContainer width="50%" height={400}>
       <ScatterChart
         margin={{
           top: 5,
