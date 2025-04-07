@@ -11,7 +11,7 @@ import {
   Label
 } from 'recharts';   
 
-const CityEventsChart = ( {allLocations, events} ) => {
+const CityEventsChart = ( {allLocations, events}  ) => {
   const [data, setData] = useState([]);
   const getData = () => {
     const data = allLocations.map((location) => {
