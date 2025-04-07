@@ -19,7 +19,7 @@ const EventGenresChart = ({ allLocations, events }) => {
   console.log('events', events);
   useEffect(() => {
     setData(getData());
-  }, [events], [allLocations]);
+  }, [`${events}`]);
 
 
 
