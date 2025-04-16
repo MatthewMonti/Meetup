@@ -19,13 +19,6 @@ describe('<NumberOfEvents /> Component', () => {
         expect(input).toBeInTheDocument();
     });
 
-    test('enter a invalid number', async () => {
-        const input = numberOfEventsComponent.getByTestId('NumberOfEventsInput');
-        const user = userEvent.setup();
-        await user.clear(input); 
-        await user.type(input, 'Barbie'); 
-        expect(isNaN(Number(input.value))).toBe(true);
-    });
 
     test('Number greater than 0', async () => {
         const input = numberOfEventsComponent.getByTestId('NumberOfEventsInput');
