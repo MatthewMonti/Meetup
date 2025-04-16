@@ -11,8 +11,8 @@ import EventGenresChart from './components/EventGenresChart';
 const App = () => {
   const [events, setEvents] = useState([]);
   const [allLocations, setAllLocations] = useState([]);
-  const [currentCity, setCurrentCity] = useState("");
-  const [currentNOE, setCurrentNOE] = useState('32');
+  const [currentCity, setCurrentCity] = useState("See all cities");
+  const [currentNOE, setCurrentNOE] = useState(32);
   const [cityAlert, setCityAlert] = useState("");
   const [numberAlert, setNumberAlert] = useState("");
   const [eventAlert, setEventAlert] = useState("");
@@ -25,30 +25,10 @@ const App = () => {
     setEventAlert(online ? "" : "Currently viewing Offline Database");
   };
   useEffect(() => {
-    const fetchMeetings = async () => {
-      try {
-        const allEvents = await getEvents();
-       // const defaultFiltered= ? setCurrentCity("See all cities") : setCurrentCity(currentCity)
-        //const defaultFiltered = currentCity === "" ? setCurrentCity("See all cities") : setCurrentCity(currentCity);
-        // better reability and code is used better 
-        const defaultCity = currentCity === "" ? "See all cities" :`${currentCity}`;
-        setCurrentCity(defaultCity);
-        const filteredEvents = currentCity === "See all cities"
-          ? allEvents
-          : allEvents.filter(event => event.location === currentCity);
 
-        
-        setEvents(filteredEvents.slice(0, currentNOE));
-
-        setAllLocations(extractLocations(allEvents));
-
-      } catch (error) {
-        console.error("Error fetching events:", error);
-      }
-    };
 
     updateOnlineStatus();
-    fetchMeetings();
+    fetchData();
     window.addEventListener("online", updateOnlineStatus);
     window.addEventListener("offline", updateOnlineStatus);
   
@@ -56,7 +36,16 @@ const App = () => {
       window.removeEventListener("online", updateOnlineStatus);
       window.removeEventListener("offline", updateOnlineStatus);
     };
-  }, [currentCity, currentNOE]);
+  }, [currentCity]);
+
+  const fetchData = async () => {
+    const allEvents = await getEvents();
+    const filteredEvents = currentCity === "See all cities" ?
+      allEvents :
+      allEvents.filter(event => event.location === currentCity)
+    setEvents(filteredEvents.slice(0, currentNOE));
+    setAllLocations(extractLocations(allEvents));
+  }
 
   return (
     <div className="App">

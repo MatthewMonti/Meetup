@@ -15,9 +15,9 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     const value = event.target.value;
     const filteredLocations = allLocations ? allLocations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-    }) : [`${allLocations}`];
+    }) : [];
 
-    setCurrentCity(value);
+    setQuery(value);
     setSuggestions(filteredLocations);
 
 
@@ -48,16 +48,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
   // Handle clicking outside the dropdown
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (SuggestionListRef.current && !SuggestionListRef.current.contains(event.target)) {
-        setShowSuggestions(false); // Hide suggestions when clicking outside
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    setSuggestions(allLocations);
   }, [`${allLocations}`]);
 
 
@@ -69,12 +60,9 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
         className="city"
         placeholder="Search City for meetings"
         value={query}
-        onFocus={() => {
-            setShowSuggestions(true);
-            setSuggestions(allLocations);
-        }}
-        onChange={handleInputChanged}
-        data-testid="search-input"
+        onFocus={() => setShowSuggestions(true)}
+            onChange={handleInputChanged}
+            data-testid="search-input"
       />
 
       {showSuggestions && (
