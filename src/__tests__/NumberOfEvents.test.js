@@ -67,6 +67,6 @@ describe('<NumberOfEvents /> integration tests', () => {
         const input = numberOfEventsComponent.getByTestId('NumberOfEventsInput');
         const user = userEvent.setup();
         await user.type(input, '{backspace}{backspace}10');
-        expect(input).toHaveValue('10');
+        expect(Number(input.value)).toBe(10);
     });
 });
