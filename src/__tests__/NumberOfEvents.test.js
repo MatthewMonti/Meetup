@@ -51,7 +51,7 @@ describe('<NumberOfEvents /> integration tests', () => {
     
     test('ensures the default value of textbox is 32', () => {
         const input = numberOfEventsComponent.queryByRole('textbox');
-        expect(input).toHaveValue('32');
+        expect(Number(input.value)).toBe(32); 
     });
 
 

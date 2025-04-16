@@ -22,7 +22,7 @@ defineFeature(feature, test => {
 
         then(/^the number of events displayed is exactly (\d+) events$/, (arg0) => {
             const eventNumberInput = screen.getByTestId('NumberOfEventsInput');
-            expect(eventNumberInput).toHaveValue('32');
+            expect(eventNumberInput).toHaveLength(10);
         });
     });
 

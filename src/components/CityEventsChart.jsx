@@ -32,18 +32,18 @@ const CityEventsChart = ( {allLocations, events}  ) => {
     <ResponsiveContainer width="50%" height={400}>
       <ScatterChart
         margin={{
-          top: 5,
+          top: 100,
           right: 50,
-          bottom: 80,
-          left: 120,
+          bottom: 100,
+          left: 40,
         }}
       >
         <CartesianGrid />
         <XAxis type="category" dataKey="city" name="City"
           angle={60} interval={0} tick={{ dx: 20, dy: 40, fontSize: 14 }} >
-        <Label value="Location of Meetings" offset={-70} position="insideBottom" />
+        <Label value="Cities" offset={-70} position="insideBottom" />
           </XAxis>
-        <YAxis type="number" dataKey="countnumber" name="Number of events" allowDecimals={false} >
+        <YAxis type="number" dataKey="countnumber" name="Meetings" allowDecimals={false} >
         <Label value="Number of Meetings" offset={-120} position="insideLeft" />
           </YAxis>
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />
