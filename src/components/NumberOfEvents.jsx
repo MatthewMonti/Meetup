@@ -33,6 +33,7 @@ const NumberOfEvents = ({setCurrentNOE, currentNOE, setNumberAlert }) => {
                     className="eventNumber"
                     type="number"
                     value={currentNOE}
+                    role="textbox"
                     onChange={handleInputChanged}
                     data-testid="NumberOfEventsInput"
                 />
