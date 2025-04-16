@@ -2,12 +2,13 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import '../../src/App.css';
 
-const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert}) => {
+const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
   
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSuggestions] = useState(allLocations);
   const SuggestionListRef = useRef(null);
   const [eventAlert, setEventAlert] = useState("");
+  const [query, setQuery] = useState("");
 
 
   const handleInputChanged = (event) => {
@@ -38,6 +39,7 @@ const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert})
 
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
+    setQuery(value);
     setShowSuggestions(false); // Hide suggestions
     setCurrentCity(value);
     setEventAlert("");
@@ -66,13 +68,10 @@ const CitySearch = ({ currentCity, setCurrentCity, allLocations,  setCityAlert})
         type="text"
         className="city"
         placeholder="Search City for meetings"
-        value={currentCity}
+        value={query}
         onFocus={() => {
-          // Show all suggestions when input is focused and the query is empty
-          if (currentCity.trim() === "" || currentCity === currentCity) {
-            setSuggestions(allLocations);
             setShowSuggestions(true);
-          } 
+            setSuggestions(allLocations);
         }}
         onChange={handleInputChanged}
         data-testid="search-input"

@@ -69,8 +69,6 @@ const App = () => {
         allLocations={allLocations} 
         setCurrentCity={setCurrentCity} 
         setCityAlert={setCityAlert} 
-        currentCity={currentCity}
-        setCurrentNOE={setCurrentNOE}
       />
 
       <div className="cityError-Message">
