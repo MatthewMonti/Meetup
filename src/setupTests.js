@@ -16,4 +16,13 @@ const ignoreMessage = MESSAGES_TO_IGNORE.find(message => args.toString().include
 if (!ignoreMessage) originalError(...args);
 }
 
+
+// jest.setup.js or setupTests.js
+global.ResizeObserver = class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
+
+
 jest.setTimeout(30000);
