@@ -72,12 +72,12 @@ const App = () => {
         {numberAlert ? <NumberAlert text={numberAlert}/> : null}
       </div>
       <div className="charts-container">
+      <EventGenresChart
+      events={events}
+      />
       <CityEventsChart 
       allLocations={allLocations} 
       events={events} 
-      />
-      <EventGenresChart
-      events={events}
       />
       </div>
       <EventList 
