@@ -1,7 +1,8 @@
 import NumberOfEvents from '../components/NumberOfEvents';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import App from '../App';
 describe('<NumberOfEvents /> Component', () => {
     let numberOfEventsComponent;
     beforeEach(() => {
@@ -19,6 +20,11 @@ describe('<NumberOfEvents /> Component', () => {
         expect(input).toBeInTheDocument();
     });
 
+    test('default value of the input field is 32', () => {
+        const input = numberOfEventsComponent.queryByRole('textbox');
+        expect(input.value).toBe('32'); // Ensure the default value is correctly set
+      });
+
 
     test('Number greater than 0', async () => {
         const input = numberOfEventsComponent.getByTestId('NumberOfEventsInput');
@@ -27,6 +33,7 @@ describe('<NumberOfEvents /> Component', () => {
         await user.type(input, '{backspace}{backspace}1'); // Input a valid number greater than 0
         expect(Number(input.value)).toBeGreaterThan(0); // Convert input value to a number for comparison
     });
+
     
     test('Input must be a whole number', async () => {
         const input = numberOfEventsComponent.getByTestId('NumberOfEventsInput');
@@ -41,16 +48,13 @@ describe('<NumberOfEvents /> integration tests', () => {
     let numberOfEventsComponent;
     beforeEach(() => {
         numberOfEventsComponent = render(
-            <NumberOfEvents
-                currentNOE={32} 
-                setCurrentNOE={() => {}}
-                setNumberAlert={() => {}}
+            <App
             />
         );
     });
     
     test('ensures the default value of textbox is 32', () => {
-        const input = numberOfEventsComponent.queryByRole('textbox');
+        const input = numberOfEventsComponent.getByTestId('NumberOfEventsInput');
         expect(Number(input.value)).toBe(32); 
     });
 
