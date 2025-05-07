@@ -1,21 +1,17 @@
-import { StrictMode } from 'react'
-import React from "react";
-import ReactDOM from "react-dom/client";
-import './index.css';
-import App from './App.jsx';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+// import * as atatus from 'atatus-spa';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-//import atatus from 'atatus-spa';
-//test functionality while deployed for speed and browser/OS combatiblity isssues
-//BELOW way to connect to atus
-//atatus.config('73ba51b05269405eab4f5af2f046caf0').install();
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration.js';
-
+// atatus.config('1b1ee5665eb943e3bdb71259beabe47a').install();
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+ <React.StrictMode>
+   <App />
+ </React.StrictMode>,
 );
 serviceWorkerRegistration.register();
