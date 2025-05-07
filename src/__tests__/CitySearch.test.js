@@ -142,19 +142,14 @@ describe('<CitySearch /> integration', () => {
 
   beforeEach(() => {
     citySearchComponent = render(
-      <CitySearch 
-      allLocations={allLocations} 
-      setCurrentCity={() => {}}
-      setCityAlert={() => { }}
+      <App
       />
     );
-    eventListComponent = render(<EventList />);
   });
   
   test('renders suggestions list when the app is rendered.', async () => {
     const user = userEvent.setup();
-    const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild;
+    const AppDOM = citySearchComponent.container.firstChild;
     const CitySearchDOM = within(AppDOM).queryByTestId('city-search');
     const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
     await user.click(cityTextBox);
@@ -172,23 +167,22 @@ describe('<CitySearch /> integration', () => {
     });
   });
 
-test("hide list clicking outside element", async () => {
+  test("hide list clicking outside element", async () => {
 
-  const user = userEvent.setup();
-  const AppComponent = render(<App />);
-  const AppDOM = AppComponent.container.firstChild;
-  const CitySearchDOM = within(AppDOM).queryByTestId('city-search');
-  const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
-  await user.click(cityTextBox);
-  const allEvents = await getEvents();
-  const allLocations = extractLocations(allEvents); 
-  // Ensure the list is initially visible
-  expect(screen.getByTestId("CityList")).toBeInTheDocument();
+    const user = userEvent.setup();
+    const AppDOM = citySearchComponent.container.firstChild;
+    const CitySearchDOM = within(AppDOM).queryByTestId('city-search');
+    const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
+    await user.click(cityTextBox);
+    const allEvents = await getEvents();
+    const allLocations = extractLocations(allEvents); 
+    // Ensure the list is initially visible
+    expect(screen.getByTestId("CityList")).toBeInTheDocument();
 
-  // Click outside (on the <h1>)
-  await user.click(screen.getByRole("heading", { level: 1 }));
+    // Click outside (on the <h1>)
+    await user.click(screen.getByRole("heading", { level: 1 }));
 
-  // The list should disappear
-  expect(screen.queryByTestId("CityList")).not.toBeInTheDocument();
-});
+    // The list should disappear
+    expect(screen.queryByTestId("CityList")).not.toBeInTheDocument();
+  });
 });

@@ -48,9 +48,17 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
   // Handle clicking outside the dropdown
   useEffect(() => {
-    setSuggestions(allLocations);
-  }, [`${allLocations}`]);
+    const handleClickOutside = (event) => {
+      if (SuggestionListRef.current && !SuggestionListRef.current.contains(event.target)) {
+        setShowSuggestions(false); // Hide suggestions when clicking outside
+      }
+    };
 
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }), [`${allLocations}`];
 
   return (
     <div id="citySearch" data-testid="city-search">
