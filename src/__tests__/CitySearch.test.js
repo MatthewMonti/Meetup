@@ -4,6 +4,7 @@ import React from 'react';
 import { render, within, waitFor, fireEvent, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
+import {setCityAlert} from '../App.jsx'
 import { extractLocations, getEvents } from '../api.js';
 import App from '../App.jsx';
 import EventList from '../components/EventList';
@@ -23,7 +24,7 @@ describe('<CitySearch /> component', ()  => {
       <CitySearch 
         allLocations={[]} 
         setCurrentCity={() => {}}
-        setCityAlert={() => { }}
+        setCityAlert={jest.fn()}
       />
     );
   });
@@ -32,7 +33,7 @@ describe('<CitySearch /> component', ()  => {
   test('shows only "See all cities" when typing a city not in the list', async () => {
     // Simulate typing a city that does not exist in the list
     const user = userEvent.setup();
-    const cityTextBox = screen.getByTestId('search-input');
+    const cityTextBox = citySearchComponent.queryByRole('textbox');
     await user.type(cityTextBox, 'Paris, France');
     // Learned to keep await as this asynchronous function 
     //needed for test to work
@@ -68,18 +69,23 @@ describe('<CitySearch /> component', ()  => {
 
   test('updates list of suggestions correctly when user types in city textbox', async () => {
     const user = userEvent.setup();
+    const allEvents = await getEvents();
+    const allLocations = extractLocations(allEvents);
+    citySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
 
-    // User types "Berlin" in city textbox
+
+    // user types "Berlin" in city textbox
     const cityTextBox = citySearchComponent.queryByRole('textbox');
     await user.type(cityTextBox, "Berlin");
-    // Learned to keep await as this asynchronous function 
-    //needed for test to work
 
-    // Filter allLocations to locations matching "Berlin"
-    const suggestions = allLocations ? allLocations.filter((location) =>
-      location.toUpperCase().includes(cityTextBox.value.toUpperCase())) : [];
 
-    // Get all <li> elements inside the suggestion list
+    // filter allLocations to locations matching "Berlin"
+    const suggestions = allLocations? allLocations.filter((location) => {
+      return location.toUpperCase().indexOf(cityTextBox.value.toUpperCase()) > -1;
+    }): [];
+
+
+    // get all <li> elements inside the suggestion list
     const suggestionListItems = citySearchComponent.queryAllByRole('listitem');
     expect(suggestionListItems).toHaveLength(suggestions.length + 1);
     for (let i = 0; i < suggestions.length; i += 1) {
