@@ -21,7 +21,7 @@ describe('<CitySearch /> component', ()  => {
   beforeEach(() => {
     citySearchComponent = render(
       <CitySearch 
-        allLocations={allLocations} 
+        allLocations={[]} 
         setCurrentCity={() => {}}
         setCityAlert={() => { }}
       />
