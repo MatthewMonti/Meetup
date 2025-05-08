@@ -24,7 +24,7 @@ describe('<CitySearch /> component', ()  => {
       <CitySearch 
         allLocations={[]} 
         setCurrentCity={() => {}}
-        setCityAlert={jest.fn()}
+        setCityAlert={() => {}}
       />
     );
   });

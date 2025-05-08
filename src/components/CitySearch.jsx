@@ -26,16 +26,21 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     }
   
     // Filter suggestions based on input
-    const filteredLocations = allLocations.filter((location) =>
+    const filteredSuggestions = allLocations.filter((location) =>
       location.toLowerCase().includes(trimmedValue.toLowerCase())
     );
   
-    setSuggestions(filteredLocations);
+    if (filteredSuggestions.length === 0) {
+      setSuggestions([]);
+      setCityAlert("We can not find the city you are looking for. Please try another city.");
+    } else {
+      setSuggestions(filteredSuggestions);
+      setCityAlert("");
+    }
+
     setShowSuggestions(true);
-    setCityAlert(
-      filteredLocations.length === 0 ? "Please try another city that is in database" : ""
-    );
   };
+
   
   
 
