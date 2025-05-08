@@ -13,29 +13,31 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
   const handleInputChanged = (event) => {
     const value = event.target.value;
-    const filteredLocations = allLocations ? allLocations.filter((location) => {
-      return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-    }) : [];
-
-    setQuery(value);
+    setQuery(value); // Always reflect what's typed
+  
+    const trimmedValue = value.trim();
+  
+    // If empty input, show all cities
+    if (trimmedValue === "") {
+      setSuggestions(allLocations);
+      setShowSuggestions(true);
+      setCityAlert("");
+      return;
+    }
+  
+    // Filter suggestions based on input
+    const filteredLocations = allLocations.filter((location) =>
+      location.toLowerCase().includes(trimmedValue.toLowerCase())
+    );
+  
     setSuggestions(filteredLocations);
-
-
-
-    if (value === '') {
-      setShowSuggestions(false);
-    } else {
-      setShowSuggestions(true)
-    }
-
-    let infoText;
-    if (filteredLocations.length === 0) {
-      infoText = "Please try another city that is in database"
-    } else {
-      infoText = ""
-    }
-    setCityAlert(infoText);
+    setShowSuggestions(true);
+    setCityAlert(
+      filteredLocations.length === 0 ? "Please try another city that is in database" : ""
+    );
   };
+  
+  
 
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
@@ -43,7 +45,6 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     setShowSuggestions(false); // Hide suggestions
     setCurrentCity(value);
     setEventAlert("");
-   // setCurrentNOE("10");
   };
 
   // Handle clicking outside the dropdown
@@ -58,7 +59,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }), [`${allLocations}`];
+  }, [`${allLocations}`]);
 
   return (
     <div id="citySearch" data-testid="city-search">
@@ -68,11 +69,17 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
         className="city"
         placeholder="Search City for meetings"
         value={query}
-        onFocus={() => setShowSuggestions(true)}
-            onChange={handleInputChanged}
-            data-testid="search-input"
-      />
 
+
+        onFocus={() => {
+          if (query.trim() === "") {
+            setSuggestions(allLocations);
+          }
+          setShowSuggestions(true);
+        }}
+        onChange={handleInputChanged}
+        data-testid="search-input"
+        />
       {showSuggestions && (
         <ul data-testid="CityList" className="suggestions" ref={SuggestionListRef}>
           <div className="listCities">
