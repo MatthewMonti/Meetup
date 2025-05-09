@@ -17,12 +17,18 @@ defineFeature(feature, test => {
         });
 
         when(/^number in event count textbox default set to (\d+)$/, (arg0) => {
+            const eventNumberInput = screen.getByTestId('NumberOfEventsInput');
+            expect(eventNumberInput).value ="32";
 
         });
 
-        then(/^the number of events displayed is exactly (\d+) events$/, (arg0) => {
-            const eventNumberInput = screen.getByTestId('NumberOfEventsInput');
-            expect(eventNumberInput).toHaveLength(10);
+        then(/^the number of events displayed is exactly (\d+) events$/, async (arg0) => {
+            const EventListDOM = screen.getByTestId('event-list');
+            const eventListItems = within(EventListDOM).getAllByRole('listitem');
+            const allEvents = await getEvents();
+            expect(eventListItems).toHaveLength(32);
+
+            
         });
     });
 
