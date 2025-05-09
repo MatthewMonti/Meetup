@@ -27,7 +27,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
       setCityAlert("We can not find the city you are looking for. Please try another city.");
     } else {
       setSuggestions(filteredSuggestions);
-      setCityAlert("");
+     /// setCityAlert(""); CANNOT FIND FUNCTION DON'T GET WHY!!!!
     }
 
     setShowSuggestions(true);
