@@ -23,10 +23,10 @@ const CityEventsChart = ( {allLocations, events}  ) => {
   };
   useEffect(() => {
     setData(getData());
-  }, [`${events}`]);
-
-
-
+  },
+    
+   // [`${events}`]) SAME NUMBER OBJECTS = SAME ARRAY WHEN VALUE SHOULD OF CHANGED CF PLEASE INVESTIGATE
+    [JSON.stringify(events)]);// this works consistantly 
 
   return (
     <ResponsiveContainer width="50%" height={400}>
