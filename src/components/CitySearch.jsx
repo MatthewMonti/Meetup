@@ -17,14 +17,6 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
   
     const trimmedValue = value.trim();
   
-    // If empty input, show all cities
-    if (trimmedValue === "") {
-      setSuggestions(allLocations);
-      setShowSuggestions(true);
-      setCityAlert("");
-      return;
-    }
-  
     // Filter suggestions based on input
     const filteredSuggestions = allLocations.filter((location) =>
       location.toLowerCase().includes(trimmedValue.toLowerCase())
