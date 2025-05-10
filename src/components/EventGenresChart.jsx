@@ -19,9 +19,8 @@ const EventGenresChart = ({ allLocations, events }) => {
   useEffect(() => {
     setData(getData());
   }, 
-  
- // [`${events}`]) SAME NUMBER OBJECTS = SAME ARRAY WHEN VALUE SHOULD OF CHANGED CF PLEASE INVESTIGATE
-  [JSON.stringify(events)]);// this works consistantly 
+  // [`${events}`]) SAME NUMBER OBJECTS = SAME ARRAY WHEN VALUE SHOULD OF CHANGED CF PLEASE INVESTIGATE
+  [JSON.stringify(events)]);
   
 
   return (
