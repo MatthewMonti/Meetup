@@ -22,7 +22,7 @@ describe('<CitySearch /> component', ()  => {
   beforeEach(() => {
     citySearchComponent = render(
       <CitySearch 
-        allLocations={[]} 
+        allLocations={allLocations} 
         setCurrentCity={() => {}}
         setCityAlert={() => {}}
       />
@@ -69,9 +69,9 @@ describe('<CitySearch /> component', ()  => {
 
   test('updates list of suggestions correctly when user types in city textbox', async () => {
     const user = userEvent.setup();
-    const allEvents = await getEvents();
-    const allLocations = extractLocations(allEvents);
-    citySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+  //  const allEvents = await getEvents();
+   //const allLocations = extractLocations(allEvents);
+    //citySearchComponent.rerender(<CitySearch allLocations={allLocations}   setCityAlert={() => {}} />);
 
 
     // user types "Berlin" in city textbox
