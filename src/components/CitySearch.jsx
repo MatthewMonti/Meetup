@@ -59,7 +59,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
   }, [`${allLocations}`]);
 
   return (
-    <div id="citySearch" data-testid="city-search">
+    <div id="city-search">
         <h3>Choose your nearest city</h3>
       <input
         type="text"
@@ -78,7 +78,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
         data-testid="search-input"
         />
       {showSuggestions && (
-        <ul data-testid="CityList" className="suggestions" ref={SuggestionListRef}>
+        <ul id="suggestions" className="suggestions" ref={SuggestionListRef}>
           <div className="listCities">
             {suggestions.map((suggestion, index) => (
               <li

@@ -156,7 +156,7 @@ describe('<CitySearch /> integration', () => {
   test('renders suggestions list when the app is rendered.', async () => {
     const user = userEvent.setup();
     const AppDOM = citySearchComponent.container.firstChild;
-    const CitySearchDOM = within(AppDOM).queryByTestId('city-search');
+    const CitySearchDOM = AppDOM.querySelector('#city-search');
     const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
     await user.click(cityTextBox);
     const allEvents = await getEvents();
@@ -177,18 +177,18 @@ describe('<CitySearch /> integration', () => {
 
     const user = userEvent.setup();
     const AppDOM = citySearchComponent.container.firstChild;
-    const CitySearchDOM = within(AppDOM).queryByTestId('city-search');
+    const CitySearchDOM = AppDOM.querySelector('#city-search');
     const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
     await user.click(cityTextBox);
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents); 
     // Ensure the list is initially visible
-    expect(screen.getByTestId("CityList")).toBeInTheDocument();
+    expect(AppDOM.querySelector("#suggestions")).toBeInTheDocument();
 
     // Click outside (on the <h1>)
     await user.click(screen.getByRole("heading", { level: 1 }));
 
     // The list should disappear
-    expect(screen.queryByTestId("CityList")).not.toBeInTheDocument();
+    expect(AppDOM.querySelector("#suggestions")).not.toBeInTheDocument();
   });
 });
