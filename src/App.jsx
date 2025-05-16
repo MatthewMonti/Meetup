@@ -36,7 +36,7 @@ const App = () => {
       window.removeEventListener("online", updateOnlineStatus);
       window.removeEventListener("offline", updateOnlineStatus);
     };
-  }, [currentCity, currentNOE]);
+  }, [currentCity]);
 
   const fetchData = async () => {
     const allEvents = await getEvents();

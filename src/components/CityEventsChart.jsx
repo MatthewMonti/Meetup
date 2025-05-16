@@ -13,6 +13,7 @@ import {
 
 const CityEventsChart = ( {allLocations, events}  ) => {
   const [data, setData] = useState([]);
+  const [query, setQuery] = useState("");
   const getData = () => {
     const data = allLocations.map((location) => {
       const countnumber = events.filter((event) => event.location === location).length
@@ -25,8 +26,8 @@ const CityEventsChart = ( {allLocations, events}  ) => {
     setData(getData());
   },
     
-   // [`${events}`]) SAME NUMBER OBJECTS = SAME ARRAY WHEN VALUE SHOULD OF CHANGED CF PLEASE INVESTIGATE
-    [JSON.stringify(events)]);// this works consistantly 
+    [`${events}`]) // SAME NUMBER OBJECTS = SAME ARRAY WHEN VALUE SHOULD OF CHANGED CF PLEASE INVESTIGATE
+    //[JSON.stringify(events)]);// this works consistantly 
 
   return (
     <ResponsiveContainer width="50%" height={400}>

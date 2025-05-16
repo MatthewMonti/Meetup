@@ -9,7 +9,7 @@ const NumberOfEvents = ({setCurrentNOE, currentNOE, setNumberAlert }) => {
         // Convert value to a number if it's a valid numeric string
         const numericValue = Number(value);
 
-        setCurrentNOE(value);
+        setCurrentNOE(numericValue);
 
         // Validate the input
         if (isNaN(numericValue)) {

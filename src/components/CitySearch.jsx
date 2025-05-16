@@ -62,7 +62,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     <div id="city-search">
         <h3>Choose your nearest city</h3>
       <input
-        type="text"
+        type="category"
         className="city"
         placeholder="Search City for meetings"
         value={query}
@@ -80,13 +80,11 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
       {showSuggestions && (
         <ul id="suggestions" className="suggestions" ref={SuggestionListRef}>
           <div className="listCities">
-            {suggestions.map((suggestion, index) => (
+            {suggestions.map((suggestion) => (
               <li
                 className="cityName"
                 onClick={handleItemClicked}
-                key={`${suggestion}-${index}`}
-              >
-                {suggestion}
+                key={suggestion}>{suggestion}
               </li>
             ))}
             <li
