@@ -9,10 +9,10 @@ const feature = loadFeature('./src/features/listCount.feature');
 defineFeature(feature, test => {
 
     test('When user has not specified a number, 32 events are shown by default.', ({ given, when, then }) => {
-
+        let AppComponent;
         given('user on main page', async () => {
             await act(async () => {
-                render(<App />)
+                AppComponent = render(<App />)
             });
         });
 
@@ -23,7 +23,8 @@ defineFeature(feature, test => {
         });
 
         then(/^the number of events displayed is exactly (\d+) events$/, async (arg0) => {
-            const EventListDOM = screen.getByTestId('event-list');
+            const AppDOM = AppComponent.container.firstChild;
+            const EventListDOM = AppDOM.querySelector('#event-list');
             const eventListItems = within(EventListDOM).getAllByRole('listitem');
             const allEvents = await getEvents();
             expect(eventListItems).toHaveLength(32);
@@ -33,25 +34,26 @@ defineFeature(feature, test => {
     });
 
     test('User can change the number of events displayed', ({ given, when, then }) => {
-        given('clicks on textbox with event number count', async () => {
-            await act(async () => {
-                render(<App />);
-            });
-        });
-
-        let NumberEventsDOM;
-        when('user changes the number of events', async () => {
-            const eventNumberInput = screen.getByTestId('NumberOfEventsInput');
-            const user = userEvent.setup();
-            await user.clear(eventNumberInput); 
-            await user.type(eventNumberInput, "10");
-        });
-        let numberOfEventsComponent;
-        then('page displays number of events user prefers displayed', async () => {
-            const EventListDOM = screen.getByTestId('event-list');
-            const eventListItems = within(EventListDOM).getAllByRole('listitem');
-            const allEvents = await getEvents();
-            expect(eventListItems).toHaveLength(10);
-        });
+    let AppComponent;
+    given('clicks on textbox with event number count', async () => {
+      await act(async () => {
+        AppComponent = render(<App />);
+      });
     });
+
+    when('user changes the number of events', async () => {
+      const eventNumberInput = screen.getByTestId('NumberOfEventsInput');
+      const user = userEvent.setup();
+      await user.clear(eventNumberInput);
+      await user.type(eventNumberInput, "10");
+      expect(eventNumberInput).toHaveValue(10); // Optional: verify input change
+    });
+
+    then('page displays number of events user prefers displayed', async () => {
+      const AppDOM = AppComponent.container.firstChild;
+      const EventListDOM = AppDOM.querySelector('#event-list');
+      const eventListItems = await within(EventListDOM).findAllByRole('listitem');
+      expect(eventListItems.length).toBe(10);
+    });
+  });
 });

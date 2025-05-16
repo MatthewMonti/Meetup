@@ -5,39 +5,37 @@ import {getEvents} from '../api.js';
 import App from '../App.jsx';
 
 describe('<App /> component unit tests', () => {
+  let AppComponent;
   beforeEach(async () => {
     await act(async () => {
-      render(<App />);  // Don't assign to AppDOM yet
+      AppComponent = render(<App />);  // Don't assign to AppDOM yet
     });
   });
 
   test('renders list of events', async () => {
-    const eventList = screen.querySelector('#event-list');  
+    const AppDOM = AppComponent.container.firstChild;
+    const eventList = AppDOM.querySelector('#event-list');  
     expect(eventList).toBeInTheDocument();
   });
 
   test('renders CitySearch', async () => {
-    const citySearch = screen.querySelector('#city-search');  
+    const AppDOM = AppComponent.container.firstChild;
+    const citySearch = AppDOM.querySelector('#city-search');  
     expect(citySearch).toBeInTheDocument();
   });
 });
 
 
 describe('<App /> integration tests', () => {
+  let AppComponent;
   beforeEach(async () => {
-    let appComponent;
     await act(async () => {
-      appComponent = render(<App />);  // Don't assign to AppDOM yet
+      AppComponent = render(<App />);  // Don't assign to AppDOM yet
     });
   });
 
   test('renders a list of events matching the city selected by the user', async () => {
     const user = userEvent.setup();
-  
-
-     eventListComponent.rerender(<EventList events={allEvents} />);
-    // Type "London" into the city search input
-
      const AppDOM = AppComponent.container.firstChild;
     const CitySearchDOM = AppDOM.querySelector('#city-search');
     const CitySearchInput = within(CitySearchDOM).queryByRole('textbox');
