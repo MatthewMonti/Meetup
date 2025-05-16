@@ -26,8 +26,8 @@ const CityEventsChart = ( {allLocations, events}  ) => {
     setData(getData());
   },
     
-    [`${events}`]) // SAME NUMBER OBJECTS = SAME CITY ERROR 
-    //[JSON.stringify(events)]);// this works consistantly 
+  //  [`${events}`]) // SAME NUMBER OBJECTS = SAME CITY ERROR 
+    [JSON.stringify(events)]);// this works consistantly 
 
   return (
     <ResponsiveContainer width="50%" height={400}>
