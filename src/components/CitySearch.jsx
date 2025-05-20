@@ -46,6 +46,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
   // Handle clicking outside the dropdown
   useEffect(() => {
+    setSuggestions(allLocations)
     const handleClickOutside = (event) => {
       if (SuggestionListRef.current && !SuggestionListRef.current.contains(event.target)) {
         setShowSuggestions(false); // Hide suggestions when clicking outside
