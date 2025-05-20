@@ -18,9 +18,9 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     const trimmedValue = value.trim();
   
     // Filter suggestions based on input
-    const filteredSuggestions = allLocations.filter((location) =>
-      location.toLowerCase().includes(trimmedValue.toLowerCase())
-    );
+  //  const filteredSuggestions = allLocations.filter((location) =>
+   //   location.toLowerCase().includes(trimmedValue.toLowerCase())
+  //  );
   
     if (filteredSuggestions.length === 0) {
       setSuggestions([]);
@@ -57,7 +57,8 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [`${allLocations}`]);
+  }, JSON.stringify(`${allLocations}`));
+
 
   return (
     <div id="city-search">

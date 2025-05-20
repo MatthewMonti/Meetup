@@ -18,9 +18,7 @@ const EventGenresChart = ({ allLocations, events }) => {
   };
   useEffect(() => {
     setData(getData());
-  }, [`${event}`]);
-  console.log([`${events}`])
-console.log([`${event}`])
+  }, JSON.stringify(`${events}`));
 
   return (
     <ResponsiveContainer width="50%" height={400}>
