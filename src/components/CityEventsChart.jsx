@@ -11,23 +11,26 @@ import {
   Label
 } from 'recharts';   
 
-const CityEventsChart = ( {allLocations, events}  ) => {
+const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
-
+  //const [query, setQuery] = useState("")
+  //console.log(events)
+  
+  useEffect(() => {
+    setData(getData());
+  }, [`${event}`]);// //SAME NUMBER OBJECTS = SAME CITY ERROR 
+   // [JSON.stringify(events)]);// this works consistantly 
+console.log([`${events}`])
+console.log([`${event}`])
+  
   const getData = () => {
     const data = allLocations.map((location) => {
-      const countnumber = events.filter((event) => event.location === location).length
+      const count = events.filter((event) => event.location === location).length
       const city = location.split((/, | - /))[0]
-      return { city, countnumber };
+      return { city, count };
     })
     return data;
   };
-  useEffect(() => {
-    setData(getData());
-  },
-    
-  //  [`${events}`]) // //SAME NUMBER OBJECTS = SAME CITY ERROR 
-    [JSON.stringify(events)]);// this works consistantly 
 
   return (
     <ResponsiveContainer width="50%" height={400}>
@@ -44,7 +47,7 @@ const CityEventsChart = ( {allLocations, events}  ) => {
           angle={60} interval={0} tick={{ dx: 20, dy: 40, fontSize: 14 }} >
         <Label value="Cities" offset={-70} position="insideBottom" />
           </XAxis>
-        <YAxis type="number" dataKey="countnumber" name="Meetings" allowDecimals={false} >
+        <YAxis type="number" dataKey="count" name="Number of events" allowDecimals={false} >
         <Label value="Number of Meetings" offset={-120} position="insideLeft" />
           </YAxis>
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />

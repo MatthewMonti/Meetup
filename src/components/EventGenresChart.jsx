@@ -18,10 +18,9 @@ const EventGenresChart = ({ allLocations, events }) => {
   };
   useEffect(() => {
     setData(getData());
-  }, 
-   //  [`${events}`]) // //SAME NUMBER OBJECTS = SAME CITY ERROR 
-  [JSON.stringify(events)]);
-  
+  }, [`${event}`]);
+  console.log([`${events}`])
+console.log([`${event}`])
 
   return (
     <ResponsiveContainer width="50%" height={400}>
