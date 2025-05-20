@@ -18,10 +18,7 @@ const CityEventsChart = ({ allLocations, events }) => {
   
   useEffect(() => {
     setData(getData());
-  }, JSON.stringify(`${events}`));
-// //SAME NUMBER OBJECTS = SAME CITY ERROR 
-   // [JSON.stringify(events)]);// this works consistantly 
-console.log([`${events}`])
+  }, JSON.stringify(events));
   
   const getData = () => {
     const data = allLocations.map((location) => {
