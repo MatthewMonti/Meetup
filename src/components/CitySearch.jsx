@@ -21,6 +21,8 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
         const filteredSuggestions = allLocations.filter((location) =>
         location.toLowerCase().includes(trimmedValue.toLowerCase())
     );
+
+    console.log(filteredSuggestions)
   
     if (filteredSuggestions.length === 0) {
       setSuggestions([]);
