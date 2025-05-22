@@ -61,6 +61,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     };
   }, [`${allLocations}`])
 
+  console.log(allLocations)
 
   return (
     <div id="city-search">
