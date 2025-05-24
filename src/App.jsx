@@ -53,23 +53,22 @@ const App = () => {
       <div className="cityError-Message">
         {eventAlert.length ? <EventAlert text={eventAlert}/> : null}
       </div>
+
+      <div className="alerts-container">
+        {cityAlert.length ? <CityAlert text={cityAlert} /> : null}
+        {numberAlert.length ? <NumberAlert text={numberAlert} /> : null}
+        {eventAlert.length ? <EventAlert text={eventAlert} /> : null}
+      </div>
       <CitySearch 
         allLocations={allLocations} 
         setCurrentCity={setCurrentCity} 
         setCityAlert={setCityAlert} 
       />
-
-      <div className="cityError-Message">
-        {cityAlert.length ? <CityAlert text={cityAlert}/> : null}
-      </div>
       <NumberOfEvents 
         currentNOE={currentNOE}
         setCurrentNOE={setCurrentNOE}
         setNumberAlert={setNumberAlert}
       />
-      <div className="cityNumber-Message">
-        {numberAlert ? <NumberAlert text={numberAlert}/> : null}
-      </div>
       <div className="charts-container">
       <EventGenresChart
       events={events}
