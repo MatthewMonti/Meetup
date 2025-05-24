@@ -17,7 +17,6 @@ const App = () => {
   const [numberAlert, setNumberAlert] = useState("");
   const [eventAlert, setEventAlert] = useState("");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
- // const [defaultFiltered, setDefaultFiltered] = useState("")
 
   const updateOnlineStatus = () => {
     const online = navigator.onLine;

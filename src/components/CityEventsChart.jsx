@@ -1,5 +1,3 @@
-// src/components/CityEventsChart.jsx
-
 import React, { useState, useEffect } from 'react';
 import {
   ScatterChart,
@@ -13,8 +11,6 @@ import {
 
 const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
-  //const [query, setQuery] = useState("")
-  //console.log(events)
   
   useEffect(() => {
     setData(getData());

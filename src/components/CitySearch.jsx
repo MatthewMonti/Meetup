@@ -13,7 +13,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
   const handleInputChanged = (event) => {
     const value = event.target.value;
-    setQuery(value); // Always reflect what's typed
+    setQuery(value);
   
     const trimmedValue = value.trim();
   
@@ -21,8 +21,6 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
         const filteredSuggestions = allLocations.filter((location) =>
         location.toLowerCase().includes(trimmedValue.toLowerCase())
     );
-
-    console.log(filteredSuggestions)
   
     if (filteredSuggestions.length === 0) {
       setSuggestions([]);
@@ -41,17 +39,16 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
     setQuery(value);
-    setShowSuggestions(false); // Hide suggestions
+    setShowSuggestions(false); 
     setCurrentCity(value);
     setEventAlert("");
   };
 
-  // Handle clicking outside the dropdown
   useEffect(() => {
     setSuggestions(allLocations)
     const handleClickOutside = (event) => {
       if (SuggestionListRef.current && !SuggestionListRef.current.contains(event.target)) {
-        setShowSuggestions(false); // Hide suggestions when clicking outside
+        setShowSuggestions(false); 
       }
     };
 
@@ -60,8 +57,6 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [`${allLocations}`])
-
-  console.log(allLocations)
 
   return (
     <div id="city-search">

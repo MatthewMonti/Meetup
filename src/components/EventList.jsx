@@ -1,4 +1,3 @@
-// src/components/EventList.js
 import React from 'react';
 import Event from "./Event";
 import '../../src/App.css';

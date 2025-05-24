@@ -1,12 +1,10 @@
 import React from 'react';
-import { useState } from "react";
 import '../App.css';
 const NumberOfEvents = ({setCurrentNOE, currentNOE, setNumberAlert }) => {
 
     const handleInputChanged = (event) => {
         const value = event.target.value;
 
-        // Convert value to a number if it's a valid numeric string
         const numericValue = Number(value);
 
         setCurrentNOE(value);
@@ -22,7 +20,7 @@ const NumberOfEvents = ({setCurrentNOE, currentNOE, setNumberAlert }) => {
         else
         {
             setNumberAlert('');
-            setCurrentNOE(numericValue); // Update the main state only when input is valid
+            setCurrentNOE(numericValue); 
         }
     };
 
