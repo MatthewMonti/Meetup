@@ -22,31 +22,6 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     setQuery(value);
     setSuggestions(filteredLocations)
 
-  if (value === "") {
-    setQuery("");                 // Clear the input box
-    setSuggestions(allLocations); // Reset suggestions to all
-    setCurrentCity("See all cities"); // Tell parent to show everything
-     setCityAlert("")
-  } else {
-    setQuery(value);               // Fill input with selected city
-    setSuggestions([value]);       // Optional: reduce suggestions to selection
-    setCurrentCity(value);         // Tell parent what was picked
-     setCityAlert("")
-  }
-
-    if (value === "Dubai") {
-    setQuery("Dubai - United Arab Emirates");                 // Clear the input box
-    setSuggestions([value]);       // Reset suggestions to all
-    setCurrentCity("Dubai - United Arab Emirates"); // Tell parent to show everything
-     setCityAlert("")
-  } else {
-    setQuery(value);               // Fill input with selected city
-    setSuggestions([value]);       // Optional: reduce suggestions to selection
-    setCurrentCity(value);         // Tell parent what was picked
-     setCityAlert("")
-  }
-
-
    let infoText;
    if (filteredLocations.length === 0) {
      infoText = "We can not find the city you are looking for. Please try another city"
