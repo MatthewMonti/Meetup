@@ -76,9 +76,6 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
 
         onFocus={() => {
-          if (query.trim() === "") {
-            setSuggestions(allLocations);
-          }
           setShowSuggestions(true);
         }}
         onChange={handleInputChanged}
