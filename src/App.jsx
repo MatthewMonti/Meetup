@@ -44,7 +44,7 @@ const App = () => {
       allEvents :
       allEvents.filter(event => event.location === currentCity)
     setEvents(filteredEvents.slice(0, currentNOE));
-    setAllLocations(extractLocations(filteredEvents));
+    setAllLocations(extractLocations(allEvents));
   }
 
   return (
