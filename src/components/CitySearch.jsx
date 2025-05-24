@@ -36,8 +36,8 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
   const value = event.target.textContent;
 
   if (value === "See all cities") {
-    setQuery("See all cities");                 // Clear the input box
-    setSuggestions(allLocations); // Reset suggestions to all
+    setQuery("");                 // Clear the input box
+    setSuggestions([allLocations]); // Reset suggestions to all
     setCurrentCity("See all cities"); // Tell parent to show everything
      setCityAlert("")
   } else {
