@@ -36,7 +36,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
     if (value === "Dubai") {
     setQuery("Dubai - United Arab Emirates");                 // Clear the input box
-    setSuggestions("Dubai - United Arab Emirates"); // Reset suggestions to all
+    setSuggestions([value]);       // Reset suggestions to all
     setCurrentCity("Dubai - United Arab Emirates"); // Tell parent to show everything
      setCityAlert("")
   } else {
