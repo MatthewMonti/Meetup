@@ -13,36 +13,40 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
   const handleInputChanged = (event) => {
     const value = event.target.value;
-    setQuery(value);
+    setQuery(value); 
+     const filteredLocations = allLocations
+    ? allLocations.filter((location) =>
+        location.toUpperCase().includes(value.toUpperCase())
+      )
+    : [];
   
-    const trimmedValue = value.trim();
-  
-    // Filter suggestions based on input
-        const filteredSuggestions = allLocations.filter((location) =>
-        location.toLowerCase().includes(trimmedValue.toLowerCase())
-    );
-  
-    if (filteredSuggestions.length === 0) {
+    if (filteredLocations.length === 0) {
       setSuggestions([]);
       setCityAlert("We can not find the city you are looking for. Please try another city.");
     } else {
-      setSuggestions(filteredSuggestions);
+      setSuggestions(filteredLocations);
       setCityAlert(""); 
     }
 
     setShowSuggestions(true);
   };
 
-  
-  
-
   const handleItemClicked = (event) => {
-    const value = event.target.textContent;
-    setQuery(value);
-    setShowSuggestions(false); 
-    setCurrentCity(value);
-    setEventAlert("");
-  };
+  const value = event.target.textContent;
+
+  if (value === "See all cities") {
+    setQuery("");                 // Clear the input box
+    setSuggestions(allLocations); // Reset suggestions to all
+    setCurrentCity("See all cities"); // Tell parent to show everything
+  } else {
+    setQuery(value);               // Fill input with selected city
+    setSuggestions([value]);       // Optional: reduce suggestions to selection
+    setCurrentCity(value);         // Tell parent what was picked
+  }
+
+  setShowSuggestions(false);
+};
+  
 
   useEffect(() => {
     setSuggestions(allLocations)
