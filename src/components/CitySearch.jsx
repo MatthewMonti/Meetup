@@ -37,7 +37,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
   if (value === "See all cities") {
     setQuery("");                 // Clear the input box
-    setSuggestions([value]); // Reset suggestions to all
+    setSuggestions(allLocations); // Reset suggestions to all
     setCurrentCity("See all cities"); // Tell parent to show everything
      setCityAlert("")
   } else {
@@ -76,6 +76,9 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
 
 
         onFocus={() => {
+          if (query.trim() === "") {
+            setSuggestions(allLocations);
+          }
           setShowSuggestions(true);
         }}
         onChange={handleInputChanged}
