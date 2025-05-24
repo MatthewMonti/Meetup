@@ -51,8 +51,8 @@ const App = () => {
       <h1 data-testid="outside-element">Meeting App</h1>
       <img className="time" alt="meet-logo" src='/calendar.png'></img>
       <div className="alerts-container">
+        {eventAlert.length ? <EventAlert text={eventAlert} /> : null}
         {cityAlert.length ? <CityAlert text={cityAlert} /> : null}
-         {eventAlert.length ? <EventAlert text={eventAlert} /> : null}
       </div>
       <CitySearch 
         allLocations={allLocations} 
