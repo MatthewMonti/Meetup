@@ -50,14 +50,9 @@ const App = () => {
     <div className="App">
       <h1 data-testid="outside-element">Meeting App</h1>
       <img className="time" alt="meet-logo" src='/calendar.png'></img>
-      <div className="cityError-Message">
-        {eventAlert.length ? <EventAlert text={eventAlert}/> : null}
-      </div>
-
       <div className="alerts-container">
         {cityAlert.length ? <CityAlert text={cityAlert} /> : null}
-        {numberAlert.length ? <NumberAlert text={numberAlert} /> : null}
-        {eventAlert.length ? <EventAlert text={eventAlert} /> : null}
+         {eventAlert.length ? <EventAlert text={eventAlert} /> : null}
       </div>
       <CitySearch 
         allLocations={allLocations} 
@@ -69,6 +64,8 @@ const App = () => {
         setCurrentNOE={setCurrentNOE}
         setNumberAlert={setNumberAlert}
       />
+      <div className="alerts-container"></div>
+      {numberAlert.length ? <NumberAlert text={numberAlert} /> : null}
       <div className="charts-container">
       <EventGenresChart
       events={events}
