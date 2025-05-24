@@ -48,7 +48,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 data-testid="outside-element">Greeting App</h1>
+      <h1 data-testid="outside-element">Meeting App</h1>
       <img className="time" alt="meet-logo" src='/calendar.png'></img>
       <div className="cityError-Message">
         {eventAlert.length ? <EventAlert text={eventAlert}/> : null}
