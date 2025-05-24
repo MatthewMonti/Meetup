@@ -19,8 +19,7 @@ const CityEventsChart = ({ allLocations, events }) => {
   useEffect(() => {
     setData(getData());
   }, [`${events}`]);
-  console.log(events)
-  
+
   const getData = () => {
     const data = allLocations.map((location) => {
       const count = events.filter((event) => event.location === location).length
@@ -49,7 +48,7 @@ const CityEventsChart = ({ allLocations, events }) => {
         <Label value="Number of Meetings" offset={-120} position="insideLeft" />
           </YAxis>
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-        <Scatter name="A school" data={data} fill="#8884d8" />
+        <Scatter name="A meeting" data={data} fill="#8884d8" />
       </ScatterChart>
     </ResponsiveContainer>
   );
