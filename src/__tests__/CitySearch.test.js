@@ -69,9 +69,9 @@ describe('<CitySearch /> component', ()  => {
 
   test('updates list of suggestions correctly when user types in city textbox', async () => {
     const user = userEvent.setup();
-  //  const allEvents = await getEvents();
-   //const allLocations = extractLocations(allEvents);
-    //citySearchComponent.rerender(<CitySearch allLocations={allLocations}   setCityAlert={() => {}} />);
+    const allEvents = await getEvents();
+    const allLocations = extractLocations(allEvents);
+    citySearchComponent.rerender(<CitySearch allLocations={allLocations}   setCityAlert={() => {}}/>);
 
 
     // user types "Berlin" in city textbox
@@ -92,6 +92,9 @@ describe('<CitySearch /> component', ()  => {
       expect(suggestionListItems[i].textContent).toBe(suggestions[i]);
     }
   });
+
+
+  
 
   test('renders the suggestion list in the textbox upon clicking on the suggestion', async () => {
     const user = userEvent.setup();
@@ -134,6 +137,9 @@ describe('<CitySearch /> component', ()  => {
   });
 
 });
+
+
+
 
 describe('<CitySearch /> integration', () => {
   let allLocations;
