@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import '../../src/App.css';
 
-const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
+const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, currentNOE, setCityAlert}) => {
   
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSuggestions] = useState(allLocations);
@@ -22,10 +22,25 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     setQuery(value);
     setSuggestions(filteredLocations)
 
+    let cityQuery;
+    if(value === "") {
+      cityQuery = setCurrentNOE("")
+    } else  {
+      setQuery(value);               // Fill input with selected city
+   // setSuggestions([value]);       // Optional: reduce suggestions to selection
+    setCurrentCity(value);         // Tell parent what was picked
+    setCityAlert("");
+    currentNOE(32)
+    setShowSuggestions(false)
+    }
+
+
    let infoText;
    if (filteredLocations.length === 0) {
      infoText = "We can not find the city you are looking for. Please try another city"
-   } else {
+     setCurrentNOE("")
+   }
+   else {
      infoText = ""
    }
    setCityAlert(infoText);
@@ -38,14 +53,15 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     setSuggestions(allLocations); // Reset suggestions to all
     setCurrentCity("See all cities"); // Tell parent to show everything
      setCityAlert("")
-  } else {
-    setQuery(value);               // Fill input with selected city
+  } 
+  else {
+     setQuery(value);               // Fill input with selected city
     setSuggestions([value]);       // Optional: reduce suggestions to selection
     setCurrentCity(value);         // Tell parent what was picked
-     setCityAlert("")
+     setCityAlert("");
+    currentNOE(32)
+    setShowSuggestions(false)
   }
-
-  setShowSuggestions(false);
 };
   
 
@@ -67,7 +83,7 @@ const CitySearch = ({ setCurrentCity, allLocations,  setCityAlert}) => {
     <div id="city-search">
         <h3>Choose your nearest city</h3>
       <input
-        type="category"
+        type="text"
         className="city"
         placeholder="Search City for meetings"
         value={query}
