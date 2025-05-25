@@ -10,9 +10,11 @@ const NumberOfEvents = ({setCurrentNOE, currentNOE, setNumberAlert }) => {
         // Validate the input
         if (isNaN(numericValue)) {
             setNumberAlert('Enter a valid number');
-        } else if (numericValue < 1) {
-            setNumberAlert('Number must be greater than 0');
-        } else if (!Number.isInteger(numericValue)) {
+        } 
+        else if (numericValue <= -1) {
+            setNumberAlert('Number must be greater than  or equal to 0');
+        } 
+        else if (!Number.isInteger(numericValue)) {
             setNumberAlert('Input must be a whole number')
         }
         else
