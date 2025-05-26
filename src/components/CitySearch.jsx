@@ -30,7 +30,7 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
-    setCurrentNOE(1);
+    setCurrentNOE(32);
      setShowSuggestions(false);
   }
    else if (!value){
