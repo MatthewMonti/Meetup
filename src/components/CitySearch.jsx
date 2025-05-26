@@ -57,10 +57,10 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setShowSuggestions(false)
     setCurrentCity("See all cities"); // Tell parent to show everything
     setCurrentNOE(32); // Make sure this happens after city update
-  } else if (value === currentCity) {
+  } else if (value === value) {
     setQuery(value);
     setSuggestions([value]);
-    setCurrentCity(currentCity);
+    setCurrentCity(value);
     setCityAlert("");
     setShowSuggestions(false);
   }
