@@ -27,8 +27,8 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
       setCurrentNOE("")
       setCurrentCity("See all cities")
       setCurrentNOE(32)
-    } else  {
-      setQuery(value);               // Fill input with selected city
+    } else if (value === currentCity) {
+      setQuery(currentCity);               // Fill input with selected city
    // setSuggestions([value]);       // Optional: reduce suggestions to selection
     setCurrentCity(currentCity);         // Tell parent what was picked
     setCityAlert("");
@@ -57,7 +57,7 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setShowSuggestions(false)
     setCurrentCity("See all cities"); // Tell parent to show everything
     setCurrentNOE(32); // Make sure this happens after city update
-  } else if (value === value) {
+  } else {
     setQuery(value);
     setSuggestions([value]);
     setCurrentCity(value);
