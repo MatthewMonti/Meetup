@@ -18,35 +18,52 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
      return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
    }) : [];
 
+    if (value === "") {
+    setQuery("");                 // Clear the input box
+    setSuggestions(allLocations); // Reset suggestions to all
+    setCityAlert("")
+    setShowSuggestions(false)
+    setCurrentCity("See all cities"); // Tell parent to show everything
+  } else if (value !== currentCity){
+    setQuery(value);
+    setSuggestions([value]);
+    setCurrentCity(value);
+    setCityAlert("");
+    setCurrentNOE(0)
+    setShowSuggestions(false);
+
+  } else if (value === currentCity){
+    setQuery(value);
+    setSuggestions([value]);
+    setCurrentCity([value]);
+    setCityAlert("");
+    setCurrentNOE(32);
+     setShowSuggestions(false);
+  }
+
     
     setQuery(value);
     setSuggestions(filteredLocations)
 
    // let cityQuery;
-    if(value === "") {
-      setCurrentNOE("")
-      setCurrentCity("See all cities")
-      setCurrentNOE(32)
-    } else if (value === currentCity) {
-      setQuery(currentCity);               // Fill input with selected city
-   // setSuggestions([value]);       // Optional: reduce suggestions to selection
-    setCurrentCity(currentCity);         // Tell parent what was picked
-    setCityAlert("");
-    setShowSuggestions(false)
-   // setCurrentNOE(32)
-    }
-
+  
 
    let infoText;
    if (filteredLocations.length === 0) {
      infoText = "We can not find the city you are looking for. Please try another city"
-     setCurrentNOE("")
+     setCurrentNOE(0)
    }
    else {
      infoText = ""
    }
    setCityAlert(infoText);
   };
+
+
+
+
+
+
   const handleItemClicked = (event) => {
   const value = event.target.textContent;
 
@@ -56,13 +73,13 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setCityAlert("")
     setShowSuggestions(false)
     setCurrentCity("See all cities"); // Tell parent to show everything
-    setCurrentNOE(32); // Make sure this happens after city update
-  } else {
+  } else if (value === value){
     setQuery(value);
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
     setShowSuggestions(false);
+    setCurrentNOE(32)
   }
 };
   
