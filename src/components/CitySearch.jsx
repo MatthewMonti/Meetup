@@ -33,7 +33,7 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setCurrentCity(currentCity);         // Tell parent what was picked
     setCityAlert("");
     setShowSuggestions(false)
-    setCurrentNOE(32)
+   // setCurrentNOE(32)
     }
 
 
