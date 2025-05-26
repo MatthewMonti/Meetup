@@ -23,23 +23,25 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setSuggestions(allLocations); // Reset suggestions to all
     setCityAlert("")
     setShowSuggestions(false)
-    setCurrentCity("See all cities"); // Tell parent to show everything
-  } else if (value !== currentCity){
+    setCurrentCity("See all cities"); // Tell parent to show everythin
+  
+  } else if (value){
+    setQuery(value);
+    setSuggestions([value]);
+    setCurrentCity(value);
+    setCityAlert("");
+    setCurrentNOE(1);
+     setShowSuggestions(false);
+  }
+   else if (!value){
     setQuery(value);
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
     setCurrentNOE(0)
     setShowSuggestions(false);
+   }
 
-  } else if (value === currentCity){
-    setQuery(value);
-    setSuggestions([value]);
-    setCurrentCity([value]);
-    setCityAlert("");
-    setCurrentNOE(32);
-     setShowSuggestions(false);
-  }
 
     
     setQuery(value);
@@ -59,30 +61,27 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
    setCityAlert(infoText);
   };
 
-
-
-
-
-
-  const handleItemClicked = (event) => {
+const handleItemClicked = async (event) => {
   const value = event.target.textContent;
 
   if (value === "See all cities") {
-    setQuery("");                 // Clear the input box
-    setSuggestions(allLocations); // Reset suggestions to all
-    setCityAlert("")
-    setShowSuggestions(false)
-    setCurrentCity("See all cities"); // Tell parent to show everything
-  } else if (value === value){
+    setQuery("");
+    setSuggestions(allLocations);
+    setCurrentCity("See all cities");
+    setCityAlert("");
+    setCurrentNOE(0); // Reset to 0 first
+    await new Promise(resolve => setTimeout(resolve, 0)); // Yield to event loop
+    setCurrentNOE(1); // Then set to full count
+    setShowSuggestions(false);
+  } else if (value) {
     setQuery(value);
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
+    setCurrentNOE(1);
     setShowSuggestions(false);
-    setCurrentNOE(32)
   }
 };
-  
 
   useEffect(() => {
     setSuggestions(allLocations)
