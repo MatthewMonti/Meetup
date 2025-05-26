@@ -22,15 +22,14 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setQuery(value);
     setSuggestions(filteredLocations)
 
-    let cityQuery;
+   // let cityQuery;
     if(value === "") {
-      cityQuery = setCurrentNOE("")
+      setCurrentNOE("")
     } else  {
       setQuery(value);               // Fill input with selected city
    // setSuggestions([value]);       // Optional: reduce suggestions to selection
     setCurrentCity(value);         // Tell parent what was picked
     setCityAlert("");
-    currentNOE(32)
     setShowSuggestions(false)
     }
 
@@ -53,13 +52,14 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setSuggestions(allLocations); // Reset suggestions to all
     setCurrentCity("See all cities"); // Tell parent to show everything
      setCityAlert("")
+     setCurrentNOE(32)
+    setShowSuggestions(false)
   } 
   else {
      setQuery(value);               // Fill input with selected city
     setSuggestions([value]);       // Optional: reduce suggestions to selection
     setCurrentCity(value);         // Tell parent what was picked
      setCityAlert("");
-    currentNOE(32)
     setShowSuggestions(false)
   }
 };
