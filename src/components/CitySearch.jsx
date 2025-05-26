@@ -25,12 +25,15 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
    // let cityQuery;
     if(value === "") {
       setCurrentNOE("")
+      setCurrentCity("See all cities")
+      setCurrentNOE(32)
     } else  {
       setQuery(value);               // Fill input with selected city
    // setSuggestions([value]);       // Optional: reduce suggestions to selection
-    setCurrentCity(value);         // Tell parent what was picked
+    setCurrentCity(currentCity);         // Tell parent what was picked
     setCityAlert("");
     setShowSuggestions(false)
+    setCurrentNOE(32)
     }
 
 
@@ -50,17 +53,19 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
   if (value === "See all cities") {
     setQuery("");                 // Clear the input box
     setSuggestions(allLocations); // Reset suggestions to all
+    setCityAlert("")
+    setShowSuggestions(false)
+
     setCurrentCity("See all cities"); // Tell parent to show everything
-     setCityAlert("")
-     setCurrentNOE(32)
-    setShowSuggestions(false)
-  } 
-  else {
-     setQuery(value);               // Fill input with selected city
-    setSuggestions([value]);       // Optional: reduce suggestions to selection
-    setCurrentCity(value);         // Tell parent what was picked
-     setCityAlert("");
-    setShowSuggestions(false)
+  setTimeout(() => {
+      setCurrentNOE(32); // Make sure this happens after city update
+    }, 0);
+  } else {
+    setQuery(value);
+    setSuggestions([value]);
+    setCurrentCity(value);
+    setCityAlert("");
+    setShowSuggestions(false);
   }
 };
   
