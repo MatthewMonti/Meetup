@@ -55,11 +55,8 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setSuggestions(allLocations); // Reset suggestions to all
     setCityAlert("")
     setShowSuggestions(false)
-
     setCurrentCity("See all cities"); // Tell parent to show everything
-  setTimeout(() => {
-      setCurrentNOE(32); // Make sure this happens after city update
-    }, 0);
+    setCurrentNOE(32); // Make sure this happens after city update
   } else {
     setQuery(value);
     setSuggestions([value]);
