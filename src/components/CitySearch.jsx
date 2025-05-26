@@ -30,7 +30,7 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
-    setCurrentNOE(32);
+    setCurrentNOE(1);
      setShowSuggestions(false);
   }
    else if (!value){
@@ -78,7 +78,9 @@ const handleItemClicked = async (event) => {
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
-    setCurrentNOE(32);
+    setCurrentNOE(0); // Reset to 0 first
+     await new Promise(resolve => setTimeout(resolve, 0)); // Yield to event loop
+    setCurrentNOE(32); // Then set to full count
     setShowSuggestions(false);
   }
 };
