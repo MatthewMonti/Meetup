@@ -29,7 +29,7 @@ const NumberOfEvents = ({setCurrentNOE, currentNOE, setNumberAlert }) => {
             <h5>Number of Events:</h5>
                 <input 
                     className="eventNumber"
-                    type="number"
+                    type="textbox"
                     value={currentNOE}
                     role="textbox"
                     onChange={handleInputChanged}
