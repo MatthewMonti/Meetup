@@ -30,7 +30,7 @@ const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, 
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
-    setCurrentNOE(1);
+    setCurrentNOE(32);
      setShowSuggestions(false);
   }
    else if (!value){
@@ -71,14 +71,14 @@ const handleItemClicked = async (event) => {
     setCityAlert("");
     setCurrentNOE(0); // Reset to 0 first
     await new Promise(resolve => setTimeout(resolve, 0)); // Yield to event loop
-    setCurrentNOE(1); // Then set to full count
+    setCurrentNOE(32); // Then set to full count
     setShowSuggestions(false);
   } else if (value) {
     setQuery(value);
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
-    setCurrentNOE(1);
+    setCurrentNOE(32);
     setShowSuggestions(false);
   }
 };
