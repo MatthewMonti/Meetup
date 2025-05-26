@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import '../../src/App.css';
 
-const CitySearch = ({ setCurrentCity, allLocations, currentCity, setCurrentNOE, currentNOE, setCityAlert}) => {
+const CitySearch = ({ setCurrentCity, allLocations, setCurrentNOE, setCityAlert}) => {
   
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSuggestions] = useState(allLocations);
