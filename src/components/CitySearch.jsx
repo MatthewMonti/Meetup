@@ -69,18 +69,12 @@ const handleItemClicked = async (event) => {
     setSuggestions(allLocations);
     setCurrentCity("See all cities");
     setCityAlert("");
-    setCurrentNOE(0); // Reset to 0 first
-    await new Promise(resolve => setTimeout(resolve, 0)); // Yield to event loop
-    setCurrentNOE(32); // Then set to full count
     setShowSuggestions(false);
   } else if (value) {
     setQuery(value);
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
-    setCurrentNOE(0); // Reset to 0 first
-     await new Promise(resolve => setTimeout(resolve, 0)); // Yield to event loop
-    setCurrentNOE(32); // Then set to full count
     setShowSuggestions(false);
   }
 };
