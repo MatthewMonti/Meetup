@@ -25,9 +25,8 @@ const App = () => {
   };
   useEffect(() => {
 
-
-    updateOnlineStatus();
     fetchData();
+    updateOnlineStatus();
     window.addEventListener("online", updateOnlineStatus);
     window.addEventListener("offline", updateOnlineStatus);
   
