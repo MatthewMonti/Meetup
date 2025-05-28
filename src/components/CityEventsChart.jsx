@@ -11,15 +11,15 @@ import {
 
 const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
-  
   useEffect(() => {
     setData(getData());
-  }, [`${events}`]);
+  }, [data]);
 
+  
   const getData = () => {
     const data = allLocations.map((location) => {
-      const city = location.split((/, | - /))[0]
       const count = events.filter((event) => event.location === location).length
+      const city = location.split((/, | - /))[0]
       return { city, count };
     })
     return data;
