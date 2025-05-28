@@ -18,37 +18,8 @@ const CitySearch = ({ setCurrentCity, allLocations, setCurrentNOE, setCityAlert}
      return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
    }) : [];
 
-    if (value === "") {
-    setQuery("");                 // Clear the input box
-    setSuggestions(allLocations); // Reset suggestions to all
-    setCityAlert("")
-    setShowSuggestions(false)
-    setCurrentCity("See all cities"); // Tell parent to show everythin
-  
-  } else if (value){
-    setQuery(value);
-    setSuggestions([value]);
-    setCurrentCity(value);
-    setCityAlert("");
-    setCurrentNOE(32);
-     setShowSuggestions(true);
-  }
-   else if (!value){
-    setQuery(value);
-    setSuggestions([value]);
-    setCurrentCity(value);
-    setCityAlert("");
-    setCurrentNOE(0)
-    setShowSuggestions(true);
-   }
-
-
-    
     setQuery(value);
     setSuggestions(filteredLocations)
-
-   // let cityQuery;
-  
 
    let infoText;
    if (filteredLocations.length === 0) {
@@ -63,20 +34,11 @@ const CitySearch = ({ setCurrentCity, allLocations, setCurrentNOE, setCityAlert}
 
 const handleItemClicked = async (event) => {
   const value = event.target.textContent;
-
-  if (value === "See all cities") {
-    setQuery("");
-    setSuggestions(allLocations);
-    setCurrentCity("See all cities");
-    setCityAlert("");
-    setShowSuggestions(false);
-  } else if (value) {
     setQuery(value);
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
     setShowSuggestions(false);
-  }
 };
 
   useEffect(() => {
