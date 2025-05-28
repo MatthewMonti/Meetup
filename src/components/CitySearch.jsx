@@ -34,11 +34,20 @@ const CitySearch = ({ setCurrentCity, allLocations, setCurrentNOE, setCityAlert}
 
 const handleItemClicked = async (event) => {
   const value = event.target.textContent;
+
+  if (value === "See all cities") {
+    setQuery("");
+    setSuggestions(allLocations);
+    setCurrentCity("See all cities");
+    setCityAlert("");
+    setShowSuggestions(false);
+  } else if (value) {
     setQuery(value);
     setSuggestions([value]);
     setCurrentCity(value);
     setCityAlert("");
     setShowSuggestions(false);
+  }
 };
 
   useEffect(() => {
