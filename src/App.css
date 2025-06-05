@@ -120,8 +120,12 @@ button{
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: grey;
+  html, body {
+  overflow-x: hidden;
+}
+
+  body, h1, .app, #root, html {
+    background-color: rgb(128, 128, 128);
     color: #ffffff; /* Ensure light text in dark mode */
   }
     li.event{
