@@ -119,6 +119,43 @@ button{
   display:inline;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: grey;
+    color: #ffffff; /* Ensure light text in dark mode */
+  }
+    li.event{
+    border: 2px solid rgb(223, 223, 223);       /* Dark grey on the left */
+    padding-bottom: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:300px;
+    list-style:none;
+  }
+  h3, p{
+    color: white;
+  }
+  tspan{
+    fill: white;
+  }
+  path.recharts-symbols{
+    fill: red;
+  }
+
+.suggestions {
+  list-style: none; /* Remove bullets */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  position: absolute; /* Position relative to the search bar */
+  top: 100%; /* Place directly below the search bar */
+  left: 0; /* Align left edge with search bar */
+  width: 100%; /* Match width of search bar */
+  background-color: rgb(59 59 59);
+  border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+
+  z-index: 1000; /* Ensure dropdown appears above other elements */
+}
+}
 
 
 
