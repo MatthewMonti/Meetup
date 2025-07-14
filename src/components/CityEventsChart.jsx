@@ -7,38 +7,46 @@ import {
   XAxis, YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
-} from 'recharts';
+  ResponsiveContainer,
+  Label
+} from 'recharts';   
 
 const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
-
+  //const [query, setQuery] = useState("")
+  //console.log(events)
+  
   useEffect(() => {
     setData(getData());
-  }, [`${data}`]);
-
+  }, [JSON.stringify(events)]);
+  
   const getData = () => {
     const data = allLocations.map((location) => {
       const count = events.filter((event) => event.location === location).length
-      const city = location.split(', ')[0]
+      const city = location.split((/, | - /))[0]
       return { city, count };
     })
     return data;
   };
 
   return (
-    <ResponsiveContainer width="99%" height={400}>
+    <ResponsiveContainer width="50%" height={400}>
       <ScatterChart
         margin={{
-          top: 20,
-          right: 20,
-          bottom: 20,
-          left: 20,
+          top: 100,
+          right: 50,
+          bottom: 100,
+          left: 40,
         }}
       >
         <CartesianGrid />
-        <XAxis type="number" dataKey="x" name="stature" unit="cm" />
-        <YAxis type="number" dataKey="y" name="weight" unit="kg" />
+        <XAxis type="category" dataKey="city" name="City"
+          angle={60} interval={0} tick={{ dx: 20, dy: 40, fontSize: 14 }} >
+        <Label value="Cities" offset={-70} position="insideBottom" />
+          </XAxis>
+        <YAxis type="number" dataKey="count" name="Number of events" allowDecimals={false} >
+        <Label value="Number of Meetings" offset={-120} position="insideLeft" />
+          </YAxis>
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />
         <Scatter name="A school" data={data} fill="#8884d8" />
       </ScatterChart>
@@ -47,4 +55,3 @@ const CityEventsChart = ({ allLocations, events }) => {
 }
 
 export default CityEventsChart;
-
