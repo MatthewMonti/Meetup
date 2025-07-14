@@ -7,7 +7,7 @@ const EventGenresChart = ({ events }) => {
   const COLORS = ['#0088FE','#00C49F','#FFBB28','#FF8042','#8884d8'];
   const getData = () => {
     const data = genres.map((genre) => {
-      const filteredEvents = events.filter(event => event.summary.includes(genre));      
+      const filteredEvents = events.filter(event => event.summary.includes(genre));   
       return {
         name: genre,
         value: filteredEvents.length
@@ -17,7 +17,7 @@ const EventGenresChart = ({ events }) => {
   };
   useEffect(() => {
     setData(getData());
-  }, [JSON.stringify(events)]);
+    }, [JSON.stringify(events)]);
 
   return (
     <ResponsiveContainer width="50%" height={400}>
